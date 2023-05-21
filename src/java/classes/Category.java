@@ -1,5 +1,11 @@
 package classes;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -9,11 +15,17 @@ import jakarta.xml.bind.annotation.XmlRootElement;
  * @author lenaj, lisaj
  */
 @XmlRootElement
+@Entity
+@Table(name="tbl_Category")
 public class Category implements Serializable {
     
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;    
+    @Column(name = "title")
     private String title;
+    @Column(name = "summary")
     private String summary;
 
     public Long getId() {

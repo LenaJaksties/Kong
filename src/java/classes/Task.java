@@ -1,5 +1,11 @@
 package classes;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
@@ -10,15 +16,25 @@ import java.util.ArrayList;
  * @author lenaj, lisaj
  */
 @XmlRootElement
+@Entity
+@Table(name="tbl_Task")
 public class Task implements Serializable{
  
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;    
+    @Column(name = "title")
     private String title;
+    @Column(name = "summary")
     private String summary;
+    @Column(name = "category")
     private Category category;
+    @Column(name = "scheduledWorkingTime")
     private long scheduledWorkingTime;
+    @Column(name = "deadline")
     private LocalDateTime deadline;
+    @Column(name = "achieved")
     private boolean achieved;
     
 

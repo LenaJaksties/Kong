@@ -1,5 +1,11 @@
 package classes;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
 
@@ -8,15 +14,25 @@ import jakarta.xml.bind.annotation.XmlRootElement;
  * @author lenaj
  */
 @XmlRootElement
+@Entity
+@Table(name="tbl_Assignee")
 public class Assignee implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    private Long id;    
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(name = "firstName")
     private String firstName;
+    @Column(name = "lastName")
     private String lastName;
+    @Column(name = "department")
     private String department;
+    @Column(name = "email")
     private String email;
+    @Column(name = "active")
     private boolean active;
+    @Column(name = "iconpath")
     private String iconpath;
 
     public Long getId() {

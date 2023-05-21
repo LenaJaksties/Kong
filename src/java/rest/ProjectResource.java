@@ -15,6 +15,19 @@ import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import java.util.ArrayList;
 
+import jakarta.annotation.Resource;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.HeuristicMixedException;
+import jakarta.transaction.HeuristicRollbackException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
+
 
 
 /**
@@ -23,9 +36,19 @@ import java.util.ArrayList;
  *
  * @author lenaj lisaj
  */
+@Stateless
+@TransactionManagement(TransactionManagementType.BEAN)
 @Path("project") // path of resource
 
 public class ProjectResource implements Serializable {
+    
+    @PersistenceContext(unitName = "JPA_ExamplePU")
+    private EntityManager em;
+    
+    @Resource
+    private UserTransaction utx;
+    
+    
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

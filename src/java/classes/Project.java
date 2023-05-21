@@ -3,23 +3,42 @@ package classes;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Column;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.Table;
 
 /**
  * Representation of a project
- * @version 1.0
+ * @version 2.0
  * @author lenaj, lisaj
  */
 @XmlRootElement
+@Entity
+@Table(name="tbl_Project")
+
 public class Project implements Serializable {
 
     private static final long serialVersionUID = 1L;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "title")
     private String title;
+    @Column(name = "summary")
     private String summary;
+    @Column(name = "logopath")
     private String logopath;
+    @Column(name = "startDate")
     private LocalDateTime startDate;
+    @Column(name = "deadline")
     private LocalDateTime deadline;
     // current workstatus in percent (MAX 100)
+    @Column(name = "status")
     private int status;
     
     
