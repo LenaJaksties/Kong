@@ -1,6 +1,8 @@
 package rest;
 
+import classes.Assignee;
 import classes.Category;
+import classes.Task;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -14,6 +16,22 @@ import java.io.Serializable;
 import java.net.URI;
 import java.util.ArrayList;
 
+import java.util.List;
+import jakarta.ejb.Stateless;
+import jakarta.ejb.TransactionManagement;
+import jakarta.ejb.TransactionManagementType;
+import jakarta.persistence.EntityManager;
+import jakarta.annotation.Resource;
+import jakarta.persistence.PersistenceContext;
+import jakarta.transaction.HeuristicMixedException;
+import jakarta.transaction.HeuristicRollbackException;
+import jakarta.transaction.NotSupportedException;
+import jakarta.transaction.RollbackException;
+import jakarta.transaction.SystemException;
+import jakarta.transaction.UserTransaction;
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
+
 /**
  * REST interface for creating/updating Category Objects or return
  * specific/ all Objects
@@ -22,6 +40,13 @@ import java.util.ArrayList;
  */
 @Path("category") 
 public class CategoryResource  implements Serializable {
+    
+    
+    @PersistenceContext(unitName = "JPA_ExamplePU")
+    private EntityManager em;
+        
+    @Resource
+    private UserTransaction utx;
     
    /**
      * POST method that creates a new Category
@@ -33,14 +58,24 @@ public class CategoryResource  implements Serializable {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createCategory(Category ca) {
+        try{
+            this.utx.begin();
+            
+            this.em.persist(ca);          // em saves to table tbl_ProjectAssignee
+            this.utx.commit();
 
-        URI location = URI.create("/category?id=" + ca.getId());   // retrieve object
-        Response.ResponseBuilder rb = Response.created(location);
-        // Example for createing a HATEOAS link
-        URI delLocLink = URI.create("/category/delete?id=" + ca.getId()); // delete object
-        rb.link(delLocLink, "delete");
-        return Response.ok(ca).build();
-        //return rb.build();
+            URI location = URI.create("/category?id=" + ca.getId());   // retrieve object
+            Response.ResponseBuilder rb = Response.created(location);
+            // Example for createing a HATEOAS link
+            URI delLocLink = URI.create("/category/delete?id=" + ca.getId()); // delete object
+            rb.link(delLocLink, "delete");
+            return Response.ok(ca).build();
+            //return rb.build();
+
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            // Better to add a error message here...
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
     }
 
     /**
@@ -54,16 +89,31 @@ public class CategoryResource  implements Serializable {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateCategory(@QueryParam("id") Long id, Category updatedCA) {
+        try{
+            this.utx.begin();
+            Category categoryUpdate = this.em.find(Category.class, id);
+            // Useing adapter to create a persistable object
+            Category categoryInfo= updatedCA;
+            categoryUpdate.setSummary(categoryInfo.getSummary());
+            categoryUpdate.setTitle(categoryInfo.getTitle());
+            
+            this.em.persist(categoryUpdate);          // em speichert in die Tabelle tbl_Project
+            this.utx.commit();
 
-        Category originalCA = updatedCA;
-        URI location = URI.create("/category?id=" + originalCA.getId());   // retrieve object
-        Response.ResponseBuilder rb = Response.created(location);
-        // Example for createing a HATEOAS link
-        URI delLocLink = URI.create("/category/delete?id=" + originalCA.getId());  // delete object
-        rb.link(delLocLink, "delete");
+            URI location = URI.create("/category?id=" + categoryUpdate.getId());   // retrieve object
+            Response.ResponseBuilder rb = Response.created(location);
+            // Example for createing a HATEOAS link
+            URI delLocLink = URI.create("/category/delete?id=" + categoryUpdate.getId());  // delete object
+            rb.link(delLocLink, "delete");
 
-        return Response.ok(originalCA).build();
-        //return rb.build();
+            return Response.ok(categoryUpdate).build();
+            //return rb.build();
+
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            // Better to add a error message here...
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+
     }
 
     /**
@@ -75,15 +125,35 @@ public class CategoryResource  implements Serializable {
     @GET
     @Produces(MediaType.APPLICATION_JSON)
     public Response getCategory(@QueryParam("id") Long id) {
-        Category ca = new Category();
-        ca.setId(1l);
-        ca.setSummary("Work related to cats");
-        ca.setTitle("CatCare");
+        
+        Category ca = this.em.find(Category.class, id);
+        
 
         Response.ResponseBuilder rb = Response.ok(ca);
         return rb.build();
     }
 
+        /**
+     * GET Method to return a specific Task
+     *
+     * @param title of searched Task
+     * @return ResponseBuilder
+     */
+    @GET
+    @Path("title")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAssignee(@QueryParam("title") String name) {
+        
+        TypedQuery<Category> query = em.createNamedQuery("category.findByTitle", Category.class);
+        query.setParameter("title", name); // Set the value of the lastName parameter
+
+        List<Category> categoryList = query.getResultList();
+   
+        Response.ResponseBuilder rb = Response.ok(categoryList);
+
+        return rb.build();
+    }
+    
     /**
      * GET Method to return all Category
      *
@@ -93,22 +163,29 @@ public class CategoryResource  implements Serializable {
     @Path("All") // -> category/All
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllCategories() {
-        ArrayList<Category> categories = new ArrayList();
-
-        Category ca1 = new Category();
-        ca1.setId(1l);
-        ca1.setSummary("Work related to cats");
-        ca1.setTitle("CatCare");
         
-        Category ca2 = new Category();
-        ca2.setId(2l);
-        ca2.setSummary("Tasks related to maintenance of applications. That can be bugfixes or new updates");
-        ca2.setTitle("Maintenance");
-        
-        categories.add(ca1);
-        categories.add(ca2);
+        Query list = this.em.createNamedQuery("category.findAll", Category.class);
 
-        Response.ResponseBuilder rb = Response.ok(categories);
+        List<Object> categoryList = new ArrayList<>();
+        categoryList = list.getResultList();
+        
+        
+//        ArrayList<Category> categories = new ArrayList();
+//
+//        Category ca1 = new Category();
+//        ca1.setId(1l);
+//        ca1.setSummary("Work related to cats");
+//        ca1.setTitle("CatCare");
+//        
+//        Category ca2 = new Category();
+//        ca2.setId(2l);
+//        ca2.setSummary("Tasks related to maintenance of applications. That can be bugfixes or new updates");
+//        ca2.setTitle("Maintenance");
+//        
+//        categories.add(ca1);
+//        categories.add(ca2);
+
+        Response.ResponseBuilder rb = Response.ok(categoryList);
 
         return rb.build();
     }

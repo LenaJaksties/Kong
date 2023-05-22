@@ -1,5 +1,6 @@
 package rest;
 
+import classes.Assignee;
 import classes.Project;
 import java.io.Serializable;
 import java.net.URI;
@@ -14,6 +15,7 @@ import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 import jakarta.ws.rs.core.Response.ResponseBuilder;
 import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.annotation.Resource;
 import jakarta.ejb.Stateless;
@@ -27,7 +29,8 @@ import jakarta.transaction.NotSupportedException;
 import jakarta.transaction.RollbackException;
 import jakarta.transaction.SystemException;
 import jakarta.transaction.UserTransaction;
-
+import jakarta.persistence.Query;
+import jakarta.persistence.TypedQuery;
 
 
 /**
@@ -36,8 +39,7 @@ import jakarta.transaction.UserTransaction;
  *
  * @author lenaj lisaj
  */
-@Stateless
-@TransactionManagement(TransactionManagementType.BEAN)
+
 @Path("project") // path of resource
 
 public class ProjectResource implements Serializable {
@@ -53,8 +55,14 @@ public class ProjectResource implements Serializable {
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
     public Response createProject(ProjectAdapter pa){
-       
+        
+        try{
+            this.utx.begin();
+            // Useing adapter to create a persistable object
             Project proj= pa.toProject();
+            this.em.persist(proj);          // em speichert in die Tabelle tbl_Project
+            this.utx.commit();
+            
             URI location = URI.create("/project?id=" + proj.getId());  // retrieve object
             ResponseBuilder rb = Response.created(location);
             // Example for createing a HATEOAS link
@@ -62,6 +70,12 @@ public class ProjectResource implements Serializable {
             rb.link(delLocLink, "delete");
             return Response.ok(proj).build();
             //return rb.build();
+        
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            // Better to add a error message here...
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+       
     }
     
     /**
@@ -76,14 +90,33 @@ public class ProjectResource implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response update(@QueryParam("id")String id, ProjectAdapter updatedPA){
        
-        Project originalP = updatedPA.toProject();
-        URI location = URI.create("/project?id=" + originalP.getId());  // retrieve object
-        ResponseBuilder rb = Response.created(location);
-        // Example for createing a HATEOAS link
-        URI delLocLink = URI.create("/project/delete?id=" + originalP.getId()); // delete object
-        rb.link(delLocLink, "delete");
-        return Response.ok(originalP).build();
-         //return rb.build();
+        try{
+            this.utx.begin();
+            Project projectUpdate = this.em.find(Project.class, id);
+            // Useing adapter to create a persistable object
+            Project projInfo= updatedPA.toProject();
+            projectUpdate.setTitle(projInfo.getTitle());
+            projectUpdate.setSummary(projInfo.getSummary());
+            projectUpdate.setStatus(projInfo.getStatus());
+            projectUpdate.setLogopath(projInfo.getLogopath());
+            projectUpdate.setStartDate(projInfo.getStartDate());
+            projectUpdate.setDeadline(projInfo.getDeadline());
+            projectUpdate.setAssignees(projInfo.getAssignees());
+            this.em.persist(projectUpdate);          // em speichert in die Tabelle tbl_Project
+            this.utx.commit();
+            
+            URI location = URI.create("/project?id=" + projectUpdate.getId());  // retrieve object
+            ResponseBuilder rb = Response.created(location);
+            // Example for createing a HATEOAS link
+            URI delLocLink = URI.create("/project/delete?id=" + projectUpdate.getId()); // delete object
+            rb.link(delLocLink, "delete");
+            return Response.ok(projectUpdate).build();
+        
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            // Better to add a error message here...
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        
     }
     
     /**
@@ -96,20 +129,33 @@ public class ProjectResource implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response get(@QueryParam("id") Long id){
         
-        ProjectAdapter pa = new ProjectAdapter();
-        pa.setDeadline("2023-06-27T00:00:00");
-        pa.setStartDate("2023-04-30T00:00:00");
-        
-        Project proj = pa.toProject();
-        proj.setId(1l);
-        proj.setTitle("Web Application Setup");
-        proj.setLogopath("/bin/templogo.png");
-        proj.setStatus(0);
-        proj.setSummary("This project focuses on creating a web application that helps with organizing tasks.");
+        Project proj = this.em.find(Project.class, id); // holt JPA Object mit id = ? aus DB
         
         ResponseBuilder rb = Response.ok(proj);
         return rb.build();
     }
+    
+    /**
+     * GET Method to return a specific Project
+     *
+     * @param title of searched Project
+     * @return ResponseBuilder
+     */
+    @GET
+    @Path("title")
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response getAssignee(@QueryParam("title") String name) {
+        
+        TypedQuery<Project> query = em.createNamedQuery("project.findByTitle", Project.class);
+        query.setParameter("title", name); // Set the value of the lastName parameter
+
+        List<Project> projectList = query.getResultList();
+   
+        Response.ResponseBuilder rb = Response.ok(projectList);
+
+        return rb.build();
+    }
+    
     
     /**
      * GET Method to return all Project_Assignees
@@ -120,36 +166,12 @@ public class ProjectResource implements Serializable {
     @Path("All") // -> project/All
     @Produces(MediaType.APPLICATION_JSON)
     public Response getAllProjectAssignees() {
-        ArrayList<Project> projects = new ArrayList();
+        Query list = this.em.createNamedQuery("project.findAll", Project.class);
         
+        List<Object> projectList = new ArrayList<>();
+        projectList = list.getResultList();
         
-        ProjectAdapter pa1 = new ProjectAdapter();
-        pa1.setDeadline("2023-06-27T00:00:00");
-        pa1.setStartDate("2023-04-30T00:00:00");
-        
-        Project proj1 = pa1.toProject();
-        proj1.setId(1l);
-        proj1.setTitle("Web Application Setup");
-        proj1.setLogopath("/bin/templogo.png");
-        proj1.setStatus(0);
-        proj1.setSummary("This project focuses on creating a web application that helps with organizing tasks.");
-        
-        
-        ProjectAdapter pa2 = new ProjectAdapter();
-        pa2.setDeadline("2023-05-14T03:09:00");
-        pa2.setStartDate("2023-05-19T07:00:59");
-        
-        Project proj2 = pa2.toProject();
-        proj2.setId(2l);
-        proj2.setTitle("Online Voting System");
-        proj2.setLogopath("/bin/templogo.png");
-        proj2.setStatus(10);
-        proj2.setSummary("The project aims to develop an online voting system for small to medium-sized organizations or communities. The system will enable authorized users to log in and vote on various topics, such as electing officials or making decisions on community issues.");
-        
-        projects.add(proj1);
-        projects.add(proj2);
-        
-        Response.ResponseBuilder rb = Response.ok(projects);
+        Response.ResponseBuilder rb = Response.ok(projectList);
 
         return rb.build();
     }

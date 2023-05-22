@@ -1,15 +1,22 @@
 package classes;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Representation of a work task
@@ -18,7 +25,17 @@ import java.util.ArrayList;
 @XmlRootElement
 @Entity
 @Table(name="tbl_Task")
+@NamedQueries({
+    @NamedQuery( name="task.findAll",
+            query="SELECT t FROM Task t"),
+    @NamedQuery(  name="task.findByTitle",
+            query="SELECT t FROM Task t WHERE t.title =:title")
+})
 public class Task implements Serializable{
+    
+    public Task(){
+        projecttask = new HashSet<>();
+    }
  
     private static final long serialVersionUID = 1L;
     @Id
@@ -36,6 +53,32 @@ public class Task implements Serializable{
     private LocalDateTime deadline;
     @Column(name = "achieved")
     private boolean achieved;
+    
+        
+    @OneToMany(mappedBy = "task")
+    @JsonbTransient
+    Set<ProjectTask> projecttask;
+    
+    public Set<ProjectTask> getProjects() {
+        return projecttask;
+    }
+    
+    public void setProjects(ProjectTask pt) {
+        this.projecttask.add(pt) ;
+        pt.setTask(this);
+    }
+    
+    public void setProjects(Set<ProjectTask> pt) {
+        
+        this.projecttask.addAll(pt) ;
+        Iterator<ProjectTask> iterator = pt.iterator();
+        while(iterator.hasNext()){
+            ProjectTask a = iterator.next();
+            a.setTask(this);
+        }
+        
+        
+    }
     
 
     public Long getId() {

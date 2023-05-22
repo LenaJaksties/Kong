@@ -1,13 +1,18 @@
 package classes;
 
+import jakarta.json.bind.annotation.JsonbTransient;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
+import java.util.Set;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 
 /**
  *
@@ -16,6 +21,12 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @Table(name="tbl_Assignee")
+@NamedQueries({
+    @NamedQuery( name="assignee.findAll",
+            query="SELECT a FROM Assignee a"),
+    @NamedQuery(  name="assignee.findByLastname",
+            query="SELECT a FROM Assignee a WHERE a.lastName = :lastName ")
+})
 public class Assignee implements Serializable {
     
     private static final long serialVersionUID = 1L;
@@ -34,6 +45,24 @@ public class Assignee implements Serializable {
     private boolean active;
     @Column(name = "iconpath")
     private String iconpath;
+    
+    @OneToMany(mappedBy = "assignee")
+    @JsonbTransient
+    Set<ProjectAssignee> projectassignee;
+    
+    public Set<ProjectAssignee> getProjectAssignees() {
+        return projectassignee;
+    }
+    
+    public void setProjectAssignee(ProjectAssignee pa) {
+        this.projectassignee.add(pa) ;
+    }
+    
+    public void setProjectAssignees(Set<ProjectAssignee> pa) {
+        
+        this.projectassignee.addAll(pa) ;
+        
+    }
 
     public Long getId() {
         return id;
@@ -82,7 +111,7 @@ public class Assignee implements Serializable {
     public void setActive(boolean active) {
         this.active = active;
     }
-
+    
     public String getIconpath() {
         return iconpath;
     }

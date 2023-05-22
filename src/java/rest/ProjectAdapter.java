@@ -2,12 +2,21 @@ package rest;
 
 import classes.Project;
 import java.time.LocalDateTime;
+import java.util.Set;
+import classes.ProjectAssignee;
+import java.util.HashSet;
 
 /**
  * Adapter to parse Date format correctly from JSON
  * @author lenaj
  */
+
 public class ProjectAdapter {
+    
+    public ProjectAdapter(){
+        assignees = new HashSet<>();
+    }
+    
     
     private String title;
     private Long id;
@@ -16,6 +25,7 @@ public class ProjectAdapter {
     private String summary;
     private String logopath;
     private int status;
+    Set<ProjectAssignee> assignees;
     
     public void setTitle(String title) {
         this.title = title;
@@ -45,6 +55,15 @@ public class ProjectAdapter {
         this.status = status;
     }
     
+//    public void setAssignee(ProjectAssignee assignee) {
+//        this.assignees = assignee;
+//    }
+    public void setAssignees(Set<ProjectAssignee> pa) {
+        
+        this.assignees.addAll(pa) ;
+        
+    }
+    
     
     public Project toProject(){
         Project proj = new Project();
@@ -55,6 +74,7 @@ public class ProjectAdapter {
         proj.setSummary(this.summary);
         proj.setLogopath(this.logopath);
         proj.setStatus(this.status);
+        proj.setAssignees(this.assignees);
         return proj;
     }
     

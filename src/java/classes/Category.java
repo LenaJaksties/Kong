@@ -5,6 +5,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.NamedQueries;
+import jakarta.persistence.NamedQuery;
 import jakarta.persistence.Table;
 import java.io.Serializable;
 import jakarta.xml.bind.annotation.XmlRootElement;
@@ -17,6 +19,12 @@ import jakarta.xml.bind.annotation.XmlRootElement;
 @XmlRootElement
 @Entity
 @Table(name="tbl_Category")
+@NamedQueries({
+    @NamedQuery( name="category.findAll",
+            query="SELECT c FROM Category c"),
+    @NamedQuery(  name="category.findByTitle",
+            query="SELECT c FROM Category c WHERE c.title =:title")
+})
 public class Category implements Serializable {
     
     private static final long serialVersionUID = 1L;
