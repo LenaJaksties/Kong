@@ -3,28 +3,37 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/TaskAssignee.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/web/WEB-INF/beans.xml</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ProjectCategoryResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ProjectAdapter.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/CategoryResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/TaskAdapter.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/Category.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/TaskAssigneeResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/ProjectAssignee.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ProjectTaskResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ProjectResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/conf/MANIFEST.MF</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ApplicationConfig.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/web/index.html</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/AssigneeResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/Assignee.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/Task.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/Project.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/rest/ProjectAssigneeResource.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/Projekt.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/ProjectTask.java</file>
-            <file>file:/C:/Users/lenaj/repo/Kong/src/java/classes/ProjectCategory.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/Disclaimer.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ProjectCategoryResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/Projectview.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/Task.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/NewProject.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ProjectTaskResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ProjectAssigneeResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/ProjectCategory.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/TaskResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/Home.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/PrivacyPolicy.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/ProjectAssignee.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/Projectdetail.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/nbproject/build-impl.xml</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ProjectAdapter.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/Project.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/NewRegister.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/TaskAssignee.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/manifest.json</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/Assignee.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ProjectResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/TaskAssigneeResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/CategoryResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/TaskAdapter.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/ApplicationConfig.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/Imprint.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/web/index.html</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/conf/persistence.xml</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/rest/AssigneeResource.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/ProjectTask.java</file>
+            <file>file:/C:/Users/lisaj/Repos/Kong/src/java/classes/Category.java</file>
         </group>
     </open-files>
 </project-private>
