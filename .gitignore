@@ -6,3 +6,14 @@ build/*
 
 nbproject/*
 nbproject*
+build/web/Disclaimer.html
+build/web/Disclaimer.html
+build/web/Home.html
+build/web/Imprint.html
+build/web/NewProject.html
+build/web/NewRegister.html
+build/web/PrivacyPolicy.html
+build/web/Projectdetail.html
+build/web/Projectview.html
+nbproject/private/private.properties
+nbproject/private/private.xml
