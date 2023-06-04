@@ -1,0 +1,74 @@
+
+/*  Css for Homepage */
+
+#welcomeSection{
+    width: 100%;
+    height: 500px;
+    background-color:#F7EFE1;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+#welcome1 {
+    text-align: center;
+    display:inherit;
+    flex-direction: column;
+    text-align-last: center;
+    font-size: 80px;
+    font-size: 5vw;
+    padding:  20px 0;
+    animation-name: welcome1Animation;
+    animation-duration: 6s;
+    color:#F7EFE1;
+}
+
+@keyframes welcome1Animation {
+    from {color: #B2CCEE;}
+    to {color: #F7EFE1;}
+
+}
+
+#welcome2 {
+    text-align: center;
+    text-align-last: center;
+    padding: 20px 0;
+    display:inherit;
+    flex-direction: column;
+    font-size: 80px;
+    font-size: 5vw;
+    animation-name: welcome2Animation;
+    animation-duration: 6s;
+    color:#B2CCEE;
+}
+
+@keyframes welcome2Animation {
+    from {color: #F7EFE1;}
+    to {color: #B2CCEE;}
+}
+  
+video{
+    width:100%;
+}
+ 
+section{
+    display: flex;
+    flex-direction: row;
+    justify-content:space-evenly;
+    width:100%;
+ 
+}
+#left {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    width:45%
+}
+
+#right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width:45%
+}
+

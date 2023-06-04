@@ -1,0 +1,49 @@
+
+/*  Css for Project Detail File */
+
+/* shows project entries */
+#contentMenu{
+    
+    
+}
+
+
+/* vertical bar to sperate contentmenu from the rest*/
+#verticalBar{
+    
+}
+
+/*change button/link colors when hovering over it */
+#contentmenu a:hover{
+    
+}
+
+/* Project detail field */
+#project{
+    
+}
+
+#projectHeader{
+    
+}
+
+#projectIcon{
+    
+}
+
+#projectTitle{
+    
+}
+/* One or more assignees */
+#projectAssignee{
+    
+}
+
+/* commentfield that only shows border */
+#commentfield{
+    
+}
+/* show content when focus is on */
+#commentfield textArea:focus{
+    
+}

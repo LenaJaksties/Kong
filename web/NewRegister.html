@@ -9,40 +9,58 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="manifest" href="\manifest.json">
-
+        
     </head>
     <body>
         <header id="header">
+            <link rel="stylesheet" type="text/css" href="MainMenu.css">
             <picture>
                 <source media="(min-width: 1920px)" srcset="kongheader1920x200.png">
                 <source media="(min-width: 1280px)" srcset="kongheader1280x133.png">
                 <source media="(min-width: 640px)" srcset="kongheader640x67.png">
                 <img src="kongheader1920x200.png" alt="Header Picture">
             </picture>
+            <form id="login" action="/action_page.php">
+                username:
+                <input type="text" name="username" value="Mickey">
+                password:
+                <input type="text" name="password" value="Mickey">
+                <input type="submit" value="Submit">
+                <a href="\Kong/NewRegister.html">New Register</a>
+            </form>
         </header>
 
 
     
-        <a href="\Kong/Projectview.html">
-            <img src="projectlist.png" alt="Icon">
-        </a>
-        <a href="\Kong/Projectdetail.html">
-            <img src="details.png" alt="Icon">
-        </a>
-        <a href="\Kong/NewProject.html">
-            <img src="newproject.png" alt="Icon">
-        </a>
+       <ul id = "navibar">
+            <li>
+                <a id="naviicon" href="\Kong/Home.html">
+                    <img src="home.png" alt="Icon">
+                    Home
+                </a>
+            </li>
+            <li>
+                <a id="naviicon" href="\Kong/Projectview.html">
+                    <img src="projectlist.png" alt="Icon">
+                    Project list
+                </a>
+            </li>
+            <li>
+                <a id="naviicon" href="\Kong/Projectdetail.html">
+                    <img src="details.png" alt="Icon">
+                    Project Detail
+                </a>
+            </li>
+            <li>
+                <a id="naviicon" href="\Kong/NewProject.html">
+                    <img src="newproject.png" alt="Icon">
+                    New Project
+                </a>
+                
+            </li>
+            
+        </ul>
         
-        <div>TODO write content</div>
-        
-        <form action="/action_page.php">
-            username:<br>
-            <input type="text" name="username" value="Mickey"><br>
-            password:<br>
-            <input type="text" name="password" value="Mickey"><br><br>
-            <input type="submit" value="Submit"><br>
-        </form>
-        <a href="\Kong/NewRegister.html">New Register</a>
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>
@@ -53,7 +71,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 Atellerie Straße 2 Minden
                 @2023
             </h4>
-            <a href="#header">Go to top</a>
+            <a id="jumpLink" href="#header">空</a>
         </footer>
         
     </body>

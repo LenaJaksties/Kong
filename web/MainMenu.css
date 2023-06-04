@@ -1,0 +1,118 @@
+
+/*  Css for all Files */
+
+a{
+    text-decoration: none;
+    color: inherit; 
+}
+header{
+    display: flex;
+    width:100%;
+    flex-direction: row;
+    justify-content:space-between;
+}
+#login{
+    background-image: 
+    linear-gradient(69deg,white 0%,#FEE8EE 20.57%,#FEEDE8 55%, white 100%);
+
+    display: flex;
+    border-radius: 10px;
+
+    flex-direction: column;
+    justify-content:space-between;
+    position: static;
+    right: 0px;
+    width: 200px;
+    height:110px;
+
+    padding: 10px;
+    text-align: right;
+
+}
+#login input[type=text]{
+    text-align: right;
+    border-radius: 15px;
+    border:0px;
+    background: white;
+
+}
+
+#login input[type=submit]{
+    background: white;
+    text-align: right;
+    border:1px solid lightgray;
+    border-radius: 5px;
+   
+}
+#login a{
+    background: white;
+    text-align: right;
+    border:1px solid lightgray;
+    border-radius: 5px;
+}
+
+body{
+    background-image: 
+    linear-gradient(69deg,white 24%,#E8F5FE 45%,#E8EAFE 50%,white 75%);
+
+}
+#jumpLink{
+    position: fixed;
+    color:white;
+    right: 20px;
+    bottom: 20px;
+    background-color: #B2CCEE;
+    border: 1px solid black;
+    text-align: center;
+    font-size: 35px;
+    font-family: "Brush Script MT", Cursive;
+    width: 50px;
+    height: 50px;
+    border-radius: 45px;
+}
+
+footer{
+    background-color: #B2CCEE;
+    text-align: center;
+    width: 100%;
+    color: white;
+    margin: 0px;
+    padding:  1px ;
+}
+
+#navibar{
+    border-radius: 360px;
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-around;
+    border: 3px solid #B2CCEE;
+    border-image: linear-gradient(to right,#B2CCEE) 0;
+    background-color: white;
+    width: 100%;
+
+    color: black;
+  	
+
+}
+
+#naviicon{
+    font-size:150%;
+    color:black;
+    font-family: Verdana;
+
+    font-weight:900;
+    font-variant: small-caps slashed-zero;
+
+}
+
+#naviicon:hover {
+    background-color: #F7EFE1;
+    margin:0px;
+    padding:0px;
+    color: black;
+    transition: background-color 1s, color 4s;
+}
+
