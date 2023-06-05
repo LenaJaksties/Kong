@@ -33,37 +33,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </form>
         </header>
 
-<ul id = "navibar">
-            <li>
-                <a id="naviicon" href="\Kong/Home.html">
+        <ul id = "navibar">
+            <li class = "naviIcon">
+                <a href="\Kong/Home.html">
                     <img src="home.png" alt="Icon">
                     Home
                 </a>
             </li>
-            <li>
-                <a id="naviicon" href="\Kong/Projectview.html">
+            <li class = "naviIcon">
+                <a href="\Kong/Projectview.html">
                     <img src="projectlist.png" alt="Icon">
                     Project list
                 </a>
             </li>
-            <li>
-                <a id="naviicon" href="\Kong/Projectdetail.html">
+            <li class = "naviIcon">
+                <a href="\Kong/Projectdetail.html">
                     <img src="details.png" alt="Icon">
                     Project Detail
                 </a>
             </li>
-            <li>
-                <a id="naviicon" href="\Kong/NewProject.html">
+            <li class = "naviIcon">
+                <a href="\Kong/NewProject.html">
                     <img src="newproject.png" alt="Icon">
                     New Project
                 </a>
                 
             </li>
-            
+        
         </ul>
         
+        <section class=divideSection>
+         
+        <section class=left>
+        <div class="contentMenu">
+            
         <h2>menu</h2>
         <ul>
+           
             <li><a href="#1">Go to Project Summary </a></li>
             <li><a href="#2">Go to Project Description </a></li>
             <li><a href="#3">Go to Project Goals </a></li>
@@ -71,18 +77,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="#5">Go to Project Description </a></li>
             <li><a href="#6">Go to Project Goals </a></li>
         </ul>
-        
-        
+
+        </div>
+            
+                    </section>
+        <div class=verticalLine></div>
+
+        <section class=right>
+            
+            <section class="project">
+            
+        <section class="projectHeader">  
         <picture>
-            <source media="(min-width: 1280px)" srcset="project2.jpg">
-            <img src ="project2small.png" alt="projectlogo">
+            <source media="(min-width: 350px)" srcset="project2.jpg">
+            <img class ="projectImg" src ="project2small.png" alt="projectlogo">
         </picture>
     
     
-        <h2>Game structure of Puzzle Game</h2>
-        <h5>Project head: @Assignee</h5>
-        
-        
+        <h2 class="projectTitle">Game structure of Puzzle Game</h2>
+        <h5 class="projectAssignee">Project head: @Assignee</h5>
+        </section>
+
+                <section class="projectSection">
+             
+               
         <section id="1">
             <h3>Project Summary</h3>
                 The main structure and architecture for a 2D indie game will be designed and implemented.
@@ -107,6 +125,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </ol> 
             <br>
         </section>
+                
+      
         
         <FORM action="http://localhost:8080/Kong/empty.html">
         <p><label for="project1"> Project Rating</label></p>
@@ -121,21 +141,32 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <input type="radio" id="rating10" name="projectrtating1" value="star5">
         <label for="rating10">5</label><br>
         
-        <textarea id="project1" name="Game structure of Puzzle Game" rows="4" cols="50">how would you rate this project so far...
-        </textarea>
+        <textarea class="commentField" id="project1" name="Game structure of Puzzle Game" rows="4" cols="50" placeholder="how would you rate this project so far..."></textarea>
+        <br>
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
         
+                  </section>
+                </section>
+            
+         <section class="project">
+            
+            
+        <section class="projectHeader">
         <picture>
-            <source media="(min-width: 1280px)" srcset="project3.jpg">
-            <img src ="project3small.png" alt="projectlogo">
+            <source media="(min-width: 350px)" srcset="project3.jpg">
+            <img class ="projectImg" src ="project3small.png" alt="projectlogo">
         </picture>
-    
-    
-        <h2>3D Animation of Characters</h2>
-        <h5>Project head: @Assignee</h5>
-        
-        
+
+        <h2 class="projectTitle">3D Animation of Characters</h2>
+        <h5 class="projectAssignee">Project head: @Assignee</h5>
+        </section>
+             
+             
+             
+         <section class="projectSection">
+             
+             
         <section id="4">
             <h3>Project Summary</h3>
                 The main characters and objects for the surroundings are modelled in Blender and Adobe Aftereffects.
@@ -175,11 +206,15 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <label for="rating5">5</label><br>
         
         
-        <textarea id="project2" name="3D Animation of Characters" rows="4" cols="50">how would you rate this project so far...
-        </textarea>
+        <textarea class="commentField" id="project2" name="3D Animation of Characters" rows="4" cols="50" placeholder="how would you rate this project so far..."></textarea>
+        <br>
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
-        
+             </section>
+             
+                </section>
+        </section>
+        </section>
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>

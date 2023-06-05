@@ -66,14 +66,16 @@
 }
 
 #filterLink{
-    border: 1px solid rgba(0,0,0,0.02);
+    border: 2px solid rgba(0,0,0,0.06);
+    padding: 2px;
+    
     color:#B2CCEE;
     box-sizing: border-box;
     box-shadow: rgba(0,0,0,0.02) 0 1px 3px 0;
     align-items:center;
-    font-size: 20px;
+    font-size: 40px;
     margin:50px;
-    
+   
 }
 
 /* show filterOption */

@@ -3,6 +3,11 @@
     "short_name": "kong",
     "icons": [
      {
+        "src": "home.png",
+        "type": "image/png",
+        "sizes": "48x48"
+     },
+     {
         "src": "projectlist.png",
         "type": "image/png",
         "sizes": "48x48"

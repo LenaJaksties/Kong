@@ -6,12 +6,18 @@ a{
     color: inherit; 
 }
 header{
+    
     display: flex;
-    width:100%;
     flex-direction: row;
     justify-content:space-between;
+    
+   
+    
 }
+
 #login{
+        margin: 0;
+    padding:0;
     background-image: 
     linear-gradient(69deg,white 0%,#FEE8EE 20.57%,#FEEDE8 55%, white 100%);
 
@@ -55,9 +61,13 @@ body{
     /*background-image: */
     /*linear-gradient(69deg,white 24%,#E8F5FE 45%,#E8EAFE 50%,white 75%);*/
     background-image: linear-gradient(to right,white,#E8EAFE);
+    margin: 0;
+    padding:0;
+    
 
 }
 #jumpLink{
+    
     position: fixed;
     color:white;
     right: 20px;
@@ -75,32 +85,46 @@ body{
 footer{
     background-color: #B2CCEE;
     text-align: center;
-    width: 100%;
+    width: auto;
     color: white;
     margin: 0px;
-    padding:  1px ;
+    padding:  2px ;
 }
 
 #navibar{
-    border-radius: 360px;
+        margin: 0;
+    padding:0;
+    border-radius: 12px;
     list-style-type: none;
     margin: 0px;
     padding: 0px;
-    display: flex;
+    display:flex;
     flex-direction: row;
-    justify-content:space-around;
+    justify-content:space-evenly;
     border: 3px solid #B2CCEE;
     border-image: linear-gradient(to right,#B2CCEE) 0;
     background-color: white;
-    width: 100%;
-
+    width:auto;
+    font-size: 1vw;
     color: black;
   	
 
 }
 
-#naviicon{
+.naviIcon a img{
+   
+    align-content:space-evenly;
+    height: 65%;
+    width: auto;
+}
+
+.naviIcon{
+    display: flex;
+    flex-direction: column;
+  
+    box-shadow: rgba(0,0,0,0.02) 0 1px 3px 0;
     font-size:150%;
+   
     color:black;
     font-family: Verdana;
 
@@ -109,7 +133,7 @@ footer{
 
 }
 
-#naviicon:hover {
+.naviIcon:hover {
     background-color: #F7EFE1;
     margin:0px;
     padding:0px;

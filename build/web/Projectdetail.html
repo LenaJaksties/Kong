@@ -15,26 +15,61 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
     </head>
     <body>
         <header id="header">
+            <link rel="stylesheet" type="text/css" href="MainMenu.css">
+            <link rel="stylesheet" type="text/css" href="Projectdetail.css">
             <picture>
                 <source media="(min-width: 1920px)" srcset="kongheader1920x200.png">
                 <source media="(min-width: 1280px)" srcset="kongheader1280x133.png">
                 <source media="(min-width: 640px)" srcset="kongheader640x67.png">
                 <img src="kongheader320x34.png" alt="Header Picture">
             </picture>
+            <form id="login" action="/action_page.php">
+                username:
+                <input type="text" name="username" value="Mickey">
+                password:
+                <input type="text" name="password" value="Mickey">
+                <input type="submit" value="Submit">
+                <a href="\Kong/NewRegister.html">New Register</a>
+            </form>
         </header>
 
-        <a href="\Kong/Projectview.html">
-            <img src="projectlist.png" alt="Icon">
-        </a>
-        <a href="\Kong/Projectdetail.html">
-            <img src="details.png" alt="Icon">
-        </a>
-        <a href="\Kong/NewProject.html">
-            <img src="newproject.png" alt="Icon">
-        </a>
+        <ul id = "navibar">
+            <li class = "naviIcon">
+                <a href="\Kong/Home.html">
+                    <img src="home.png" alt="Icon">
+                    Home
+                </a>
+            </li>
+            <li class = "naviIcon">
+                <a href="\Kong/Projectview.html">
+                    <img src="projectlist.png" alt="Icon">
+                    Project list
+                </a>
+            </li>
+            <li class = "naviIcon">
+                <a href="\Kong/Projectdetail.html">
+                    <img src="details.png" alt="Icon">
+                    Project Detail
+                </a>
+            </li>
+            <li class = "naviIcon">
+                <a href="\Kong/NewProject.html">
+                    <img src="newproject.png" alt="Icon">
+                    New Project
+                </a>
+                
+            </li>
         
+        </ul>
+        
+        <section class=divideSection>
+         
+        <section class=left>
+        <div class="contentMenu">
+            
         <h2>menu</h2>
         <ul>
+           
             <li><a href="#1">Go to Project Summary </a></li>
             <li><a href="#2">Go to Project Description </a></li>
             <li><a href="#3">Go to Project Goals </a></li>
@@ -42,18 +77,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="#5">Go to Project Description </a></li>
             <li><a href="#6">Go to Project Goals </a></li>
         </ul>
-        
-        
+
+        </div>
+            
+                    </section>
+        <div class=verticalLine></div>
+
+        <section class=right>
+            
+            <section class="project">
+            
+        <section class="projectHeader">  
         <picture>
-            <source media="(min-width: 1280px)" srcset="project2.jpg">
-            <img src ="project2small.png" alt="projectlogo">
+            <source media="(min-width: 350px)" srcset="project2.jpg">
+            <img class ="projectImg" src ="project2small.png" alt="projectlogo">
         </picture>
     
     
-        <h2>Game structure of Puzzle Game</h2>
-        <h5>Project head: @Assignee</h5>
-        
-        
+        <h2 class="projectTitle">Game structure of Puzzle Game</h2>
+        <h5 class="projectAssignee">Project head: @Assignee</h5>
+        </section>
+
+                <section class="projectSection">
+             
+               
         <section id="1">
             <h3>Project Summary</h3>
                 The main structure and architecture for a 2D indie game will be designed and implemented.
@@ -78,24 +125,48 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </ol> 
             <br>
         </section>
+                
+      
         
         <FORM action="http://localhost:8080/Kong/empty.html">
         <p><label for="project1"> Project Rating</label></p>
-        <textarea id="project1" name="Game structure of Puzzle Game" rows="4" cols="50">how would you rate this project so far...
-        </textarea>
+        <input type="radio" id="rating6" name="projectrtating1" value="star">
+        <label for="rating6">1</label><br>
+        <input type="radio" id="rating7" name="projectrtating1" value="star2">
+        <label for="rating7">2</label><br>
+        <input type="radio" id="rating8" name="projectrtating1" value="star3">
+        <label for="rating8">3</label><br>        
+        <input type="radio" id="rating9" name="projectrtating1" value="star4">
+        <label for="rating9">4</label><br>        
+        <input type="radio" id="rating10" name="projectrtating1" value="star5">
+        <label for="rating10">5</label><br>
+        
+        <textarea class="commentField" id="project1" name="Game structure of Puzzle Game" rows="4" cols="50" placeholder="how would you rate this project so far..."></textarea>
+        <br>
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
         
+                  </section>
+                </section>
+            
+         <section class="project">
+            
+            
+        <section class="projectHeader">
         <picture>
-            <source media="(min-width: 1280px)" srcset="project3.jpg">
-            <img src ="project3small.png" alt="projectlogo">
+            <source media="(min-width: 350px)" srcset="project3.jpg">
+            <img class ="projectImg" src ="project3small.png" alt="projectlogo">
         </picture>
-    
-    
-        <h2>3D Animation of Characters</h2>
-        <h5>Project head: @Assignee</h5>
-        
-        
+
+        <h2 class="projectTitle">3D Animation of Characters</h2>
+        <h5 class="projectAssignee">Project head: @Assignee</h5>
+        </section>
+             
+             
+             
+         <section class="projectSection">
+             
+             
         <section id="4">
             <h3>Project Summary</h3>
                 The main characters and objects for the surroundings are modelled in Blender and Adobe Aftereffects.
@@ -122,19 +193,28 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </section>
         <FORM action="http://localhost:8080/Kong/empty.html">
         <p><label for="project2"> Project Rating</label></p>
-        <textarea id="project2" name="3D Animation of Characters" rows="4" cols="50">how would you rate this project so far...
-        </textarea>
+       
+        <input type="radio" id="rating" name="projectrtating" value="star">
+        <label for="rating">1</label><br>
+        <input type="radio" id="rating2" name="projectrtating" value="star2">
+        <label for="rating2">2</label><br>
+        <input type="radio" id="rating3" name="projectrtating" value="star3">
+        <label for="rating3">3</label><br>        
+        <input type="radio" id="rating4" name="projectrtating" value="star4">
+        <label for="rating4">4</label><br>        
+        <input type="radio" id="rating5" name="projectrtating" value="star5">
+        <label for="rating5">5</label><br>
+        
+        
+        <textarea class="commentField" id="project2" name="3D Animation of Characters" rows="4" cols="50" placeholder="how would you rate this project so far..."></textarea>
+        <br>
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
-        
-        <form action="/action_page.php">
-            username:<br>
-            <input type="text" name="username" value="Mickey"><br>
-            password:<br>
-            <input type="text" name="password" value="Mickey"><br><br>
-            <input type="submit" value="Submit"><br>
-        </form>
-        <a href="\Kong/NewRegister.html">New Register</a>
+             </section>
+             
+                </section>
+        </section>
+        </section>
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>
@@ -145,7 +225,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 Atellerie Straße 2 Minden
                 @2023
             </h4>
-            <a href="#header">Go to top</a>
+            <a id="jumpLink" href="#header">空</a>
         </footer>
         
     </body>

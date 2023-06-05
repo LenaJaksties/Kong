@@ -2,48 +2,151 @@
 /*  Css for Project Detail File */
 
 /* shows project entries */
-#contentMenu{
+.contentMenu{
     
+    list-style-type: none;
+    padding:0;
+    margin:0;
+    width:200px;
+    background-color: #E8EAFE;
     
 }
-
+.contentMenu ul{
+        
+    list-style-type: none;
+    padding:2px;
+    margin:0;
+}
+.contentMenu li {
+    
+}
 
 /* vertical bar to sperate contentmenu from the rest*/
-#verticalBar{
+.verticalLine{
+    border-left: 16px solid #F7EFE1;;
+    
+    height:auto;
     
 }
 
-/*change button/link colors when hovering over it */
-#contentmenu a:hover{
+.divideSection{
+    display: flex;
+    flex-direction: row;
+    justify-content:left;
+    width:auto;
+ 
+}
+
+
+.left{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
     
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+}
+
+
+/*change button/link colors when hovering over it */
+.contentMenu li:hover{
+    background-color: white;
 }
 
 /* Project detail field */
-#project{
-    
+.project{
+    background-color: white;
+        
 }
 
-#projectHeader{
-    
+.projectSection{
+    margin-left: 20px;
 }
 
-#projectIcon{
-    
+
+
+.projectHeader{
+    /* stick header to the top of the site when scrolling*/
+    position:sticky;
+    top: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width:100%;
+    background-color: #B2CCEE;
+ 
 }
 
-#projectTitle{
+.project img{
+    height: auto;
+    width: 100%;
+    max-width:100%;    
+    margin: 0;
+        background-color: #B2CCEE;
+    padding:0;
+}
+
+.project image{
+    margin: 0;
+    padding:0;
+    width:100%;
+        background-color: #B2CCEE;
+}
+
+
+
+.projectTitle{
     
+    font-size: 200%;
+    /*font-size:3vw;*/
+    font-family: Verdana;
+    font-weight:900;
+    font-variant: small-caps slashed-zero;
+    color:white;
+    margin:0;
+
 }
 /* One or more assignees */
-#projectAssignee{
-    
+.projectAssignee{
+    font-size: 200%;
+    /*font-size:3vw;*/
+    font-family: Verdana;
+    font-weight:900;
+    font-variant: small-caps slashed-zero;
+    color:white;
+    margin:0;
 }
 
+
 /* commentfield that only shows border */
-#commentfield{
+.commentField{
+    border:2px solid rgba(0,0,0,0.06);
+    padding:10px;
+    transition:border-color 0.3s, background-color 0.3s;
+    color:black;
     
 }
+.commentField::placeholder{
+    color:transparent
+}
+
 /* show content when focus is on */
-#commentfield textArea:focus{
-    
+.commentField:focus{
+    border-color: #B2CCEE;
+    background-color: #F7EFE1;
+    color:black;
+
+}
+.commentField:focus::placeholder{
+    color:black;
+}
+
+
+.commentField:not(:focus){
+    color:transparent;
 }
