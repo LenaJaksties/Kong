@@ -63,30 +63,67 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </li>
         
         </ul>
+        <h2 style="margin:20px;font-size: 350%; color:white; background-color: #ceceff;">New Project</h2>
         
-        <FORM action="http://localhost:8080/Kong/empty.html">
-        <p><label for="titel"> Project Title</label></p>
-        <input type="text" id="titel" name="titel"><br><br>
-        <p><label for="startdate"> Start Date</label></p>
-        <input type="date" id="startdate" name="startdate"><br><br>
-        <p><label for="deadline"> Deadline</label></p>
-        <input type="date" id="deadline" name="deadline"><br><br>
-        <p><label for="summary"> Project Summary</label></p>
-        <input type="text" id="summary" name="summary"><br><br>
-        <p><label for="description"> Project Description</label></p>
-        <input type="text" id="description" name="description"><br><br>
-        <p>Project Goals</p>
-        <input name="browser" list="browsers">
-        <datalist id="browsers">
-            <option value="Setup a project in Gradle">
-            <option value="Write HTML Code">
-        </datalist>
+        <section class="project">
+            <FORM action="http://localhost:8080/Kong/empty.html">
+            <section class="projectHeader">
                 
-        <p><label for="picture"></label></p>
-        <input type="file" id="picture" name="picture"><br><br>
+                <div class="imageContainer">
+                    
+                    <input type="file" id="picture" name="picture" hidden="hidden">
+                    <p><label for="picture">
+                            <img id="imagePreview" src="project1.jpg" alt="placeholder">
+
+                    </label></p>
+                
+                
+                
+                
+                </div>
+                
+                <section class="projectTitle">
+                    <p><label for="titel"> Project Title</label></p>
+                    <input type="text" id="titel" name="titel"><br><br>
+                </section>
+                <section class="projectAssignee">
+                    <p>Project head</p>
+                    <input name="browser" list="assignee">
+                    <datalist id="assignee">
+                        <option value="Lisa">
+                        <option value="Lena">
+                    </datalist>
+                </section>
+                         
+            </section>
+           
+               
+            <p><label for="summary"> Project Summary</label></p>
+            <input type="text" id="summary" name="summary"><br><br>
+        
+            <p><label for="description"> Project Description</label></p>
+            <input type="text" id="description" name="description"><br><br>
+            <p>Project Goals</p>
+            <input name="browser" list="browsers">
+            <datalist id="browsers">
+                <option value="Setup a project in Gradle">
+                <option value="Write HTML Code">
+            </datalist>
+            <br><br>
+            <p><label for="startdate"> Start Date</label></p>
+            <input type="date" id="startdate" name="startdate"><br><br>
+            <p><label for="deadline"> Deadline</label></p>
+            <input type="date" id="deadline" name="deadline"><br><br>
+            <br>
+
+                
+        
         
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
+            
+           
+        </section>
         
         <footer>
             

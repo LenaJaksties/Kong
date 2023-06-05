@@ -17,13 +17,10 @@
     padding:2px;
     margin:0;
 }
-.contentMenu li {
-    
-}
 
 /* vertical bar to sperate contentmenu from the rest*/
 .verticalLine{
-    border-left: 16px solid #F7EFE1;;
+    border-left: 16px solid #EBD9CC;
     
     height:auto;
     
@@ -55,7 +52,7 @@
 
 /*change button/link colors when hovering over it */
 .contentMenu li:hover{
-    background-color: white;
+    background-color: #F7EFE1;
 }
 
 /* Project detail field */
@@ -78,8 +75,8 @@
     flex-direction: row;
     justify-content:space-between;
     width:100%;
-    background-color: #B2CCEE;
- 
+    background-image: 
+    repeating-linear-gradient(145.47deg, #bfe4ff 24%, #eaeff2 5%, #ceceff 55.07%, #dfd1f9 77%, #e6e3f5 93%, #eaeff2 100%);
 }
 
 .project img{
@@ -87,7 +84,7 @@
     width: 100%;
     max-width:100%;    
     margin: 0;
-        background-color: #B2CCEE;
+    background-color: #B2CCEE;
     padding:0;
 }
 
@@ -95,13 +92,10 @@
     margin: 0;
     padding:0;
     width:100%;
-        background-color: #B2CCEE;
+    background-color: #B2CCEE;
 }
 
-
-
 .projectTitle{
-    
     font-size: 200%;
     /*font-size:3vw;*/
     font-family: Verdana;

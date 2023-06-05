@@ -61,14 +61,27 @@ section{
 #left {
     display: flex;
     flex-direction: column;
-    justify-content: space-around;
+    justify-content: end;
+    font-size: 40px;
+    font-stretch: expanded;
+    color:darkgrey;
     width:45%
+}
+#left article{
+    margin:0;
+    padding:10px;
+    font-size:35px;
+    background-color: #B2CCEE;
+    color:#F7EFE1;
 }
 
 #right {
+    color: #B2CCEE;
+    font-size: 40px;
+    font-stretch: expanded;
     display: flex;
     flex-direction: column;
-    justify-content: space-evenly;
+    justify-content: start;
     width:45%
 }
 

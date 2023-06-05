@@ -27,3 +27,81 @@
 
 
 
+
+/* Project detail field */
+.project{
+    background-color: white;
+    width:auto;
+    margin:20px;
+        
+}
+
+
+
+
+.projectHeader{
+    /* stick header to the top of the site when scrolling*/
+    /*position:sticky;
+    top: 0px;*/
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between;
+    width:100%;
+    background-image: 
+    repeating-linear-gradient(145.47deg, #bfe4ff 24%, #eaeff2 5%, #ceceff 55.07%, #dfd1f9 77%, #e6e3f5 93%, #eaeff2 100%);
+   
+ 
+}
+
+.project img{
+    height: 100%;
+    width: 30%;
+    max-width:100%;    
+    margin: 0;
+    background-color: #B2CCEE;
+    padding:0;
+}
+
+.imageContainer{
+    display:inline-block;
+    margin: 0;
+    padding: 0;
+}
+#imagePreview{
+    margin: 0;
+    padding:0;
+    width:100%;
+    background-color: #B2CCEE;
+    object-fit:cover;
+}
+
+
+
+.projectTitle{
+    font-size: 200%;
+    /*font-size:3vw;*/
+    font-family: Verdana;
+    font-weight:900;
+    font-variant: small-caps slashed-zero;
+    color:white;
+    margin:0;
+
+}
+/* One or more assignees */
+.projectAssignee{
+    font-size: 200%;
+    /*font-size:3vw;*/
+    font-family: Verdana;
+    font-weight:900;
+    font-variant: small-caps slashed-zero;
+    color:white;
+    margin:0;
+}
+
+.project input[type=text]{
+    width:99%;
+}
+
+
+
+
