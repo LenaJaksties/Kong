@@ -5,17 +5,35 @@ var websiteLanguage = navigator.language || navigator.userlanguage;
 console.log("Detected Language: " + websiteLanguage);
 
 var dictionary = new Map();
-// fill dictionary englisch and german
-dictionary.set("Project List",["Project List","Projektliste"]);
-dictionary.set("Project Detail",["Project Detail","Projekdetail"]);
-dictionary.set("New Project",["New Project","Neues Projekt"]);
-dictionary.set("Project Description",["Project Description","Projektbeschreibung"]);
+// fill dictionary in englisch and german
+dictionary.set("projectList",["Project List","Projektliste"]);
+dictionary.set("projectDetail",["Project Detail","Projekdetail"]);
+dictionary.set("newProject",["New Project","Neues Projekt"]);
+dictionary.set("projectDescription",["Project Description","Projektbeschreibung"]);
+dictionary.set("content",["Content","Inhalt"]);
+dictionary.set("latestProjects",["Latest Projects","Letzte Projekte"]);
+dictionary.set("username",["Username","Benutzername"]);
+dictionary.set("password",["Password","Passwort"]);
+dictionary.set("submit",["Submit","Senden"]);
+dictionary.set("newRegister",["New Register","Neuregistrierung"]);
+dictionary.set("project",["Project","Projekt"]);
+dictionary.set("projectSummary",["Project Summary","Projektübersicht"]);
+dictionary.set("projectGoals",["Project Goals","Projektziele"]);
+dictionary.set("send",["Send","Senden"]);
+dictionary.set("reset",["Reset","Zurücksetzen"]);
+dictionary.set("menu",["Menu","Menü"]);
+dictionary.set("projectOverview",["Project Overview","Projektübersicht"]);
+dictionary.set("goToProjectDetails",["Go to project details","Gehe zu Projekt Details"]);
+dictionary.set("projectTitle",["Project Title","Projekttitel"]);
+dictionary.set("projectHead",["Project Head","Projektleiter"]);
+dictionary.set("startDate",["Start Date","Startdatum"]);
+dictionary.set("deadline",["Deadline","Frist"]);
 
 // take values depending on website language
 var indexNumber = 0;
-if(websiteLanguage === "en" || websiteLanguage === "en-GB" || websiteLanguage === "en.US"){
+if(websiteLanguage === "en" || websiteLanguage === "en-GB" || websiteLanguage === "en-US" || websiteLanguage === "en-CA"|| websiteLanguage === "en-AU"){
     indexNumber = 0;
-}else if(websiteLanguage === "de" ){
+}else if(websiteLanguage === "de" || websiteLanguage === "de-DE" || websiteLanguage === "de-AT"|| websiteLanguage === "de-CH" ){
      indexNumber = 1;
 }else{
     console.log("This Site is only available in english and german");

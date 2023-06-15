@@ -59,32 +59,27 @@ function printProject(project){
 	
     }
 }
+ console.log("");
 console.log("Project number 1");
 printProject(project1);
+ console.log("");
 
 console.log("Project number 2");
 printProject(project2);
 
+ console.log("");
+console.log("Project number 3");
+printProject(project3);
+ console.log("");
 
 
-//for(var i in task1){
-//     console.log(i + " = " + task1[i]);
-//    for(var j in tasklist[i]){
-//        console.log("HAKUNA MATATA" +i + j + tasklist[i][j]); 
-//    }
-//}
-
-//console.log(task1.categorysummary);
-//
-//for (const x of tasklist.values()) {
-//                console.log(x +' = ' + tasklist[x]);
-//    
-//    }
 console.log("WorkingTime Project 1:");
 project1.calcWorkingtime();
 console.log("WorkingTime Project 2:");
 project2.calcWorkingtime();
-
+console.log("WorkingTime Project 3:");
+project3.calcWorkingtime();
+console.log("");
 
 var projectlist = [project1, project2, project3];
 var projManager = new ProjectManager(projectlist);
@@ -92,35 +87,29 @@ var projManager = new ProjectManager(projectlist);
 
 console.log("Project unsorted");
 for(var i in projectlist) {
-    console.log(i + ' = ' + projectlist[i]);
-    
-    //printProject(projectlist[i]);
+    console.log(i + ' \t ' + projectlist[i]);
     
     for(var k in projectlist[i]) {
-    console.log(i + k +' = ' + projectlist[i][k]);
+    console.log(i +"\t"+ k +' = ' + projectlist[i][k]);
     }
 }
 
 console.log("Project sorted by Duration");
 projManager.sortByDuration();
 for(var i in projectlist) {
-    console.log(i + ' = ' + projectlist[i]);
-    
-    //printProject(projectlist[i]);
+    console.log(i + ' \t ' + projectlist[i]);
     
     for(var k in projectlist[i]) {
-    console.log(i + k +' = ' + projectlist[i][k]);
+    console.log(i +"\t"+ k +' = ' + projectlist[i][k]);
     }
 }
 console.log("");
 console.log("Project sorted by Startdate");
 projManager.sortByStartDate();
 for(var i in projectlist) {
-    console.log(i + ' = ' + projectlist[i]);
-    
-    //printProject(projectlist[i]);
+    console.log(i + ' \t ' + projectlist[i]);
     
     for(var k in projectlist[i]) {
-    console.log(i + k +' = ' + projectlist[i][k]);
+    console.log(i +"\t"+ k +' = ' + projectlist[i][k]);
     }
 }

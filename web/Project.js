@@ -266,10 +266,6 @@ export class ProjectManager {
   constructor(projects) {
     this.projects = projects;
   }
-
-//  sortByStartDate() {
-//    this.projects.sort((a, b) => a.startdate - b.startdate);
-//  }
   
   sortByStartDate() {
     const n = this.projects.length;
@@ -284,10 +280,6 @@ export class ProjectManager {
     }
   }
 
-//  sortByDuration() {
-//      
-//    this.projects.sort((a, b) => (a.calcWorkingtime()) - (b.calcWorkingtime()));
-//  }
   sortByDuration() {
     const n = this.projects.length;
     for (let i = 0; i < n - 1; i++) {

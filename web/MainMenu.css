@@ -32,7 +32,7 @@ header img{
     linear-gradient(69deg,white 0%,#FEE8EE 20.57%,#FEEDE8 55%, white 100%);*/
     background-image: 
     repeating-linear-gradient(145.47deg, #bfe4ff 24%, #eaeff2 5%, #ceceff 55.07%, #dfd1f9 77%, #e6e3f5 93%, #eaeff2 100%);
-    
+   
     display: flex;
     border-radius: 10px;
     flex-direction: column;
