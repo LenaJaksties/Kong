@@ -1,7 +1,6 @@
 
 package rest;
 
-
 import classes.Assignee;
 import classes.ProjectAssignee;
 import jakarta.ws.rs.Consumes;
@@ -103,7 +102,10 @@ public class AssigneeResource implements Serializable {
             assigneeUpdate.setFirstName(assigneeInfo.getFirstName());
             assigneeUpdate.setIconpath(assigneeInfo.getIconpath());
             assigneeUpdate.setLastName(assigneeInfo.getLastName());
-            assigneeUpdate.setProjectAssignees(assigneeInfo.getProjectAssignees());
+            if(assigneeUpdate.getProjectAssignees() != null && assigneeInfo.getProjectAssignees() != null){
+                assigneeUpdate.setProjectAssignees(assigneeInfo.getProjectAssignees());
+
+            }
             
             this.em.persist(assigneeUpdate);          // em speichert in die Tabelle tbl_Project
             this.utx.commit();

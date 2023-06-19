@@ -59,7 +59,6 @@ public class ProjectTaskResource  implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response createProjectTask(@QueryParam("projectId") Long projectId, @QueryParam("taskId") Long taskId, ProjectTask pt) {
 
-       
         try{
             this.utx.begin();
             
@@ -78,10 +77,10 @@ public class ProjectTaskResource  implements Serializable {
             this.em.persist(pt);          // em saves to table tbl_ProjectAssignee
             this.utx.commit();
 
-            URI location = URI.create("/category?id=" + pt.getId());   // retrieve object
+            URI location = URI.create("/project_task?id=" + pt.getId());   // retrieve object
             Response.ResponseBuilder rb = Response.created(location);
             // Example for createing a HATEOAS link
-            URI delLocLink = URI.create("/category/delete?id=" + pt.getId()); // delete object
+            URI delLocLink = URI.create("/project_task/delete?id=" + pt.getId()); // delete object
             rb.link(delLocLink, "delete");
             return Response.ok(pt).build();
             //return rb.build();
@@ -105,15 +104,30 @@ public class ProjectTaskResource  implements Serializable {
     @Produces(MediaType.APPLICATION_JSON)
     public Response updateProjectTask(@QueryParam("id") Long id, ProjectTask updatedPT) {
 
-        ProjectTask originalPT = updatedPT;
-        URI location = URI.create("/category?id=" + originalPT.getId());   // retrieve object
-        Response.ResponseBuilder rb = Response.created(location);
-        // Example for createing a HATEOAS link
-        URI delLocLink = URI.create("/category/delete?id=" + originalPT.getId());  // delete object
-        rb.link(delLocLink, "delete");
+        
+         try{
+            this.utx.begin();
+            ProjectTask protaskUpdate = this.em.find(ProjectTask.class, id);
+            // Useing adapter to create a persistable object
+            ProjectTask protaskInfo= updatedPT;
+            protaskUpdate.setExpendedWorkingTime(protaskInfo.getExpendedWorkingTime());
+            
+            this.em.persist(protaskUpdate);          // em speichert in die Tabelle tbl_Project
+            this.utx.commit();
 
-        return Response.ok(originalPT).build();
-        //return rb.build();
+            URI location = URI.create("/project_task?id=" + protaskUpdate.getId());   // retrieve object
+            Response.ResponseBuilder rb = Response.created(location);
+            // Example for createing a HATEOAS link
+            URI delLocLink = URI.create("/project_task/delete?id=" + protaskUpdate.getId());  // delete object
+            rb.link(delLocLink, "delete");
+
+            return Response.ok(protaskUpdate).build();
+
+        } catch (NotSupportedException | SystemException | RollbackException | HeuristicMixedException | HeuristicRollbackException | SecurityException | IllegalStateException ex) {
+            // Better to add a error message here...
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).build();
+        }
+        
     }
 
     /**
@@ -130,6 +144,7 @@ public class ProjectTaskResource  implements Serializable {
         Response.ResponseBuilder rb = Response.ok(pt);
 
         return rb.build();
+        
     }
 
 //    /**
