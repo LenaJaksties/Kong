@@ -13,7 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="manifest" href="\manifest.json">
         <script src="Project.js" type="module" ></script>
         <script src="ExternScript.js" type="module"></script>
-        <script src="Language.js"></script>
+        <script src="Language.js" type="module"></script>
+        <script src="LoginLogoutForm.js" type="module"></script>
 
     </head>
     <body>
@@ -26,19 +27,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 640px)" srcset="kongheader640x67.png">
                 <img src="kongheader320x34.png" alt="Header Picture">
             </picture>
-            <form id="login" action="/action_page.php">
-                username:
-                <input type="text" name="username" value="Mickey">
-                password:
-                <input type="text" name="password" value="Mickey">
-                <input type="submit" value="Submit">
-                <a href="\Kong/NewRegister.html">New Register</a>
-            </form>
+            <div id="loginForm">
+                <form id="login">
+                    <span id="username">Username:</span>
+                    <input type="text" name="username" value="Mickey">
+                    <span id="password">Password:</span>
+                    <input type="text" name="password" value="12345">
+                    <input id="submit" type="submit" value="Submit">
+                    <a href="\Kong/NewRegister.html">
+                        <span id="newRegister">New Register</span>
+                    </a>
+                </form>
+            </div>
+
+            <div id="logoutForm" style="display: none;">
+                <p>Welcome, <span id="loggedInUsername"></span>!</p>
+                <button id="logout">Logout</button>
+            </div>
         </header>
-
-
-    
-        <ul id = "navibar">
+        
+                <ul id = "navibar">
             <li class = "naviIcon">
                 <a href="\Kong/Home.html">
                     <img src="home.png" alt="Icon">
@@ -46,25 +54,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </a>
             </li>
             <li class = "naviIcon">
-                <a href="\Kong/Projectview.html">
+                <a href="\Kong/Projectview.html"> 
                     <img src="projectlist.png" alt="Icon">
-                    Project list
+                    <span id = "projectList">
+                    Project list's
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/Projectdetail.html">
                     <img src="details.png" alt="Icon">
-                    Project Detail
+                    <span id = "projectDetail">
+                        Project Detail
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/NewProject.html">
                     <img src="newproject.png" alt="Icon">
+                    <span id = "newProject">
                     New Project
+                    </span>
                 </a>
                 
             </li>
-            
         </ul>
         
         <br>
@@ -77,19 +90,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="\Kong/Projectdetail.html">3D Animation of Characters</a></li> 
             <li><a href="\Kong/Projectdetail.html">Storyline and Plot of the Point and Click Adventure</a></li> 
         </ul>
-        <h2 style="margin:50px;font-size: 350%; color:white; background-color: #B2CCEE;">Project overview</h2>
-        <section class=project id="1">
+        <h2 style="margin:50px;font-size: 350%; color:white; background-color: #B2CCEE;"><span id = "projectOverview">Project overview </span> </h2>
+        
+  
+        <button id="sortByStartDateButton">Sort by Start Date</button>
+        <button id="sortByDurationButton">Sort by Duration</button>
+        
+        <section id ="input"></section>
+        
+<!--        <section class=project id="1">
             <h3 class = "projectHeader">Website for Business matters</h3>
             <picture>
                 <source media="(min-width: 350px)" srcset="project1.jpg">
                 <img src ="project1small.png" alt="projectpicture">
             </picture>
-            <article class = "projectSummary"><h4>Project description</h4><br>
+            <article class = "projectSummary"><h4 class= "projectDescription">Project description</h4><br>
                 In order to sell games as indie developer we need to build a trustworthy and catching website.
                 <br> This project contains all meaningful steps to create an online presence.
             </article>
             <footer class ="projectFooter">
-                <a href="\Kong/Projectdetail.html">Go to project details</a>
+                <a href="\Kong/Projectdetail.html"><span class = "goToProjectDetails"> Go to project details</span></a>
             </footer>
         </section>
         
@@ -99,11 +119,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 350px)" srcset="project2.jpg">
                 <img src ="project2small.png" alt="projectpicture">
             </picture>
-            <article class = "projectSummary"><h4>Project description</h4><br>
+            <article class = "projectSummary"><h4 class= "projectDescription">Project description</h4><br>
                 The main structure and architecture for a 2D indie game will be designed and implemented.
             </article>
             <footer class ="projectFooter">
-                <a href="\Kong/Projectdetail.html">Go to project details</a>
+                <a href="\Kong/Projectdetail.html"><span class = "goToProjectDetails"> Go to project details</span></a>
             </footer>
         </section>
         
@@ -113,11 +133,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 350px)" srcset="project3.jpg">
                 <img src ="project3small.png" alt="projectpicture">
             </picture>
-            <article class = "projectSummary"><h4>Project description</h4><br>
+            <article class = "projectSummary"><h4 class= "projectDescription">Project description</h4><br>
                 The main characters and objects for the surroundings are modelled in Blender and Adobe Aftereffects.
             </article>
             <footer class ="projectFooter">
-                <a href="\Kong/Projectdetail.html">Go to project details</a>
+                <a href="\Kong/Projectdetail.html"><span class = "goToProjectDetails"> Go to project details</span></a>
             </footer>
         </section>
         
@@ -127,17 +147,169 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 350px)" srcset="project4.jpg">
                 <img src ="project4small.png" alt="projectpicture">
             </picture>
-            <article class = "projectSummary"><h4>Project description</h4><br>
+            <article class = "projectSummary"><h4 class = "projectDescription">Project description</h4><br>
                 Creating a thrilling and beautiful detailed story for the game.
             </article>
             <footer class ="projectFooter">
-                <a href="\Kong/Projectdetail.html">Go to project details</a>
+                <a href="\Kong/Projectdetail.html"><span class = "goToProjectDetails"> Go to project details </span></a>
             </footer>
         </section>
         
         <div>
             <h1></h1>
-        </div>
+        </div>-->
+        
+        
+<script type="module">
+    import { getAllProject } from "./FetchAPIGet.js";
+    import { ProjectManager } from './Project.js';
+    import { Project } from './Project.js';
+    import { Task } from './Project.js';
+    import { Category } from './Project.js';
+    import {translateSite} from './Language.js';
+
+    let projManager;
+    // embedd projects into page by getting container element
+    var projectContainer = document.getElementById("input");
+
+    function sortProjectsByStartDate() {
+        projManager.sortByStartDate();
+        updateProjectSections();
+    }
+
+    function sortProjectsByDuration() {
+        projManager.sortByDuration();
+        updateProjectSections();
+    }
+
+    function executeAfterFileLoaded() {
+
+        // Attach event listeners to sorting buttons
+        const sortByStartDateButton = document.getElementById("sortByStartDateButton");
+        const sortByDurationButton = document.getElementById("sortByDurationButton");
+
+        sortByStartDateButton.addEventListener("click", sortProjectsByStartDate);
+        sortByDurationButton.addEventListener("click", sortProjectsByDuration);
+        
+        // get all projects
+        getAllProject().then(projectList => {
+            console.log(projectList);
+
+            // store projects in project manager
+            projManager = new ProjectManager(projectList);
+            projManager.sortByStartDate();
+
+            updateProjectSections();
+
+        })
+
+        .catch(error => {
+          console.error(error);
+        });
+        
+        translateSite();
+    }
+    
+    function updateProjectSections() {
+        // Clear existing project sections
+        projectContainer.innerHTML = '';
+
+        // Clear existing filter options (menu)
+        const filterOption = document.getElementById('filterOption');
+        filterOption.innerHTML = '';
+      
+      
+        for (let i = 0; i < projManager.projects.length ; i++) {
+             
+            var projectSection = document.createElement("section");
+            projectSection.classList.add("project");
+            projectSection.id = projManager.projects[i].id;
+            projectSection.className = "project";
+
+            var projectTitle = document.createElement("h3");
+            projectTitle.classList.add("projectHeader");
+            projectTitle.textContent = projManager.projects[i].title;
+            projectSection.appendChild(projectTitle);
+
+            // image
+            var picture = document.createElement("picture");
+            var source = document.createElement("source");
+            source.media = "(min-width: 350px)";
+            source.srcset = projManager.projects[i].logopath;
+            var image = document.createElement("img");
+            image.src = "project" + (i + 1) + "small.png";
+            image.src = projManager.projects[i].logopath;
+            image.alt = "projectpicture";
+            picture.appendChild(source);
+            picture.appendChild(image);
+            projectSection.appendChild(picture);
+
+            var projectSummary = document.createElement("article");
+            projectSummary.classList.add("projectSummary");
+
+            var projectDescription = document.createElement("h4");
+            projectDescription.classList.add("projectDescription");
+            projectDescription.textContent = "Project description";
+            projectSummary.appendChild(projectDescription);
+
+            // split summary attribut consisting of summary and short description
+            const sentences = projManager.projects[i].summary.split('. ');
+            // summary
+            var summaryText = document.createTextNode(sentences[0]);
+            projectSummary.appendChild(summaryText);
+
+            // show scheduled working time by calculating the tasks together
+            var projectTime = document.createElement("h5");
+            projectTime.classList.add("projectTime");
+            projectTime.textContent = "Scheduled Working Time";
+            projectSummary.appendChild(projectTime);
+            var timeText = document.createTextNode(projManager.projects[i].calcWorkingtime());
+            projectSummary.appendChild(timeText);
+                
+            // show start date of project
+            var startDate = document.createElement("h5");
+            startDate.classList.add("startDate");
+            startDate.textContent = "Start Date";
+            projectSummary.appendChild(startDate);
+            var startTimeText = document.createTextNode(projManager.projects[i].startDate);
+            projectSummary.appendChild(startTimeText);        
+
+            projectSection.appendChild(projectSummary);
+
+            // footer section with link
+            var projectFooter = document.createElement("footer");
+            projectFooter.classList.add("projectFooter");
+            var goToProjectDetails = document.createElement("a");
+            goToProjectDetails.href = "/Kong/Projectdetail.html?id=" + projManager.projects[i].id;
+            var goToProjectDetailsSpan = document.createElement("span");
+            goToProjectDetailsSpan.class = "goToProjectDetails";
+            goToProjectDetailsSpan.classList.add("goToProjectDetails");
+            goToProjectDetailsSpan.textContent = "Go to project details";
+            goToProjectDetails.appendChild(goToProjectDetailsSpan);
+            projectFooter.appendChild(goToProjectDetails);
+            projectSection.appendChild(projectFooter);
+
+            projectContainer.appendChild(projectSection);
+
+            // add project link in listelement to menu
+            var listItem = document.createElement('li');
+            var projectLink = document.createElement('a');
+            projectLink.href = "/Kong/Projectdetail.html?id=" + projManager.projects[i].id;
+            projectLink.textContent = projManager.projects[i].title;
+            listItem.appendChild(projectLink);
+            filterOption.appendChild(listItem);
+            translateSite();
+        }
+    }
+
+  
+
+    // run method, when html file is completely loaded
+    document.addEventListener("DOMContentLoaded", executeAfterFileLoaded);
+        
+</script>
+        
+        
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>

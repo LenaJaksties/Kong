@@ -13,7 +13,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="manifest" href="\manifest.json">
         <script src="Project.js" type="module" ></script>
         <script src="ExternScript.js" type="module"></script>
-        <script src="Language.js"></script>
+        <script src="Language.js" type="module"></script>
+        <script src="HTMLFunctions.js" type="module"></script>
 
     </head>
     <body>
@@ -26,19 +27,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 640px)" srcset="kongheader640x67.png">
                 <img src="kongheader320x34.png" alt="Header Picture">
             </picture>
-            <form id="login" action="/action_page.php">
-                username:
-                <input type="text" name="username" value="Mickey">
-                password:
-                <input type="text" name="password" value="Mickey">
-                <input type="submit" value="Submit">
-                <a href="\Kong/NewRegister.html">New Register</a>
-            </form>
+            <div id="loginForm">
+                <form id="login">
+                    <span id="username">Username:</span>
+                    <input type="text" name="username" value="Mickey">
+                    <span id="password">Password:</span>
+                    <input type="text" name="password" value="12345">
+                    <input id="submit" type="submit" value="Submit">
+                    <a href="\Kong/NewRegister.html">
+                        <span id="newRegister">New Register</span>
+                    </a>
+                </form>
+            </div>
+
+            <div id="logoutForm" style="display: none;">
+                <p>Welcome, <span id="loggedInUsername"></span>!</p>
+                <button id="logout">Logout</button>
+            </div>
         </header>
-
-
-    
-        <ul id = "navibar">
+        
+                <ul id = "navibar">
             <li class = "naviIcon">
                 <a href="\Kong/Home.html">
                     <img src="home.png" alt="Icon">
@@ -46,21 +54,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </a>
             </li>
             <li class = "naviIcon">
-                <a href="\Kong/Projectview.html">
+                <a href="\Kong/Projectview.html"> 
                     <img src="projectlist.png" alt="Icon">
-                    Project list
+                    <span id = "projectList">
+                    Project list's
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/Projectdetail.html">
                     <img src="details.png" alt="Icon">
-                    Project Detail
+                    <span id = "projectDetail">
+                        Project Detail
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/NewProject.html">
                     <img src="newproject.png" alt="Icon">
+                    <span id = "newProject">
                     New Project
+                    </span>
                 </a>
                 
             </li>
@@ -127,7 +141,14 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             
            
         </section>
-        
+        <script type="module">
+              import {translateSite} from './Language.js';
+               function executeAfterFileLoaded() {
+                  translateSite();
+              }
+                  
+                   document.addEventListener("DOMContentLoaded", executeAfterFileLoaded);
+        </script>
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>

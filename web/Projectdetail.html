@@ -10,8 +10,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="keywords" content="Project, Management, Planner">
         <meta name="author" content="Lisa and Lena">
-        <link rel="manifest" href="\manifest.json">
-        <script src="Projectdetail.js"></script>
+        <link rel="manifest" href="\manifest.json">        
+        <script src="LoginLogoutForm.js" type="module"></script>
+        <script src="Language.js" type = "module"></script>
 
     </head>
     <body>
@@ -24,17 +25,26 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 <source media="(min-width: 640px)" srcset="kongheader640x67.png">
                 <img src="kongheader320x34.png" alt="Header Picture">
             </picture>
-            <form id="login" action="/action_page.php">
-                username:
-                <input type="text" name="username" value="Mickey">
-                password:
-                <input type="text" name="password" value="Mickey">
-                <input type="submit" value="Submit">
-                <a href="\Kong/NewRegister.html">New Register</a>
-            </form>
-        </header>
+            <div id="loginForm">
+                <form id="login">
+                  <span id="username">Username:</span>
+                  <input type="text" name="username" value="Mickey">
+                  <span id="password">Password:</span>
+                  <input type="text" name="password" value="12345">
+                  <input id="submit" type="submit" value="Submit">
+                  <a href="\Kong/NewRegister.html">
+                    <span id="newRegister">New Register</span>
+                  </a>
+                </form>
+              </div>
 
-        <ul id = "navibar">
+              <div id="logoutForm" style="display: none;">
+                <p>Welcome, <span id="loggedInUsername"></span>!</p>
+                <button id="logout">Logout</button>
+              </div>
+        </header>
+        
+                <ul id = "navibar">
             <li class = "naviIcon">
                 <a href="\Kong/Home.html">
                     <img src="home.png" alt="Icon">
@@ -42,21 +52,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </a>
             </li>
             <li class = "naviIcon">
-                <a href="\Kong/Projectview.html">
+                <a href="\Kong/Projectview.html"> 
                     <img src="projectlist.png" alt="Icon">
-                    Project list
+                    <span id = "projectList">
+                    Project list's
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/Projectdetail.html">
                     <img src="details.png" alt="Icon">
-                    Project Detail
+                    <span id = "projectDetail">
+                        Project Detail
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/NewProject.html">
                     <img src="newproject.png" alt="Icon">
+                    <span id = "newProject">
                     New Project
+                    </span>
                 </a>
                 
             </li>
@@ -74,9 +90,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             <li><a href="#1">Go to Project Summary </a></li>
             <li><a href="#2">Go to Project Description </a></li>
             <li><a href="#3">Go to Project Goals </a></li>
-            <li><a href="#4">Go to Project Summary </a></li>
+<!--            <li><a href="#4">Go to Project Summary </a></li>
             <li><a href="#5">Go to Project Description </a></li>
-            <li><a href="#6">Go to Project Goals </a></li>
+            <li><a href="#6">Go to Project Goals </a></li>-->
         </ul>
 
         </div>
@@ -86,9 +102,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
 
         <section class=right>
             
-            <h2 style="margin:20px;font-size: 350%; color:white; background-color: #ceceff;">Project Description</h2>
+            <h2 style="margin:20px;font-size: 350%; color:white; background-color: #ceceff;"> <span class = "projectSummary1">Project Description </span></h2>
             
             
+            <section id ="input"></section>
+           
+        <!--    
             <section class="project">
             
         <section class="projectHeader">  
@@ -112,7 +131,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </section>
         
         <section id="2">
-            <h4>Project Description</h4>
+            <h4><span class = "projectSummary1">Project Description </span></h4>
                 Sample ideas and choose a software model and architecture.
                 Therefore the assignees work with a repository on Github.
                 The main aspect of this project is to implement the game loop, that builds the fundament of all short stories within the game.
@@ -129,30 +148,33 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </ol> 
             <br>
         </section>
-                
+        -->
       
         
-        <FORM action="http://localhost:8080/Kong/empty.html">
+        <FORM id="commentForm" action="/action_page.php">
         <p><label for="project1"> Project Rating</label></p>
-        <input type="radio" id="rating6" name="projectrtating1" value="star">
-        <label for="rating6">1</label><br>
-        <input type="radio" id="rating7" name="projectrtating1" value="star2">
-        <label for="rating7">2</label><br>
-        <input type="radio" id="rating8" name="projectrtating1" value="star3">
-        <label for="rating8">3</label><br>        
-        <input type="radio" id="rating9" name="projectrtating1" value="star4">
-        <label for="rating9">4</label><br>        
-        <input type="radio" id="rating10" name="projectrtating1" value="star5">
-        <label for="rating10">5</label><br>
+        <input type="radio" id="rating1" name="projectrtating1" value="star">
+        <label for="rating1">1</label><br>
+        <input type="radio" id="rating2" name="projectrtating1" value="star2">
+        <label for="rating2">2</label><br>
+        <input type="radio" id="rating3" name="projectrtating1" value="star3">
+        <label for="rating3">3</label><br>        
+        <input type="radio" id="rating4" name="projectrtating1" value="star4">
+        <label for="rating4">4</label><br>        
+        <input type="radio" id="rating5" name="projectrtating1" value="star5">
+        <label for="rating5">5</label><br>
         
-        <textarea class="commentField" id="project1" name="Game structure of Puzzle Game" rows="4" cols="50" placeholder="how would you rate this project so far..."></textarea>
+        <textarea class="commentField" id="project1" name="Game structure of Puzzle Game" rows="4" cols="50" placeholder="how would you rate this project so far..." ></textarea>
         <br>
+                    <div id="comment">My Comments:</div>
         <INPUT type="submit" value="Send"> <INPUT type="reset">
         </FORM>
         
                   </section>
                 </section>
             
+        
+        <!--
          <section class="project">
             
             
@@ -178,7 +200,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </section>
         
         <section id="5">
-            <h4>Project Description</h4>
+            <h4><span class = "projectSummary1">Project Description </span></h4>
                 First there will be a roughly sketching of the main characters and objects.
                 The second step includes an 2D Illustration.
                 Afterwards some movable Objects will be modelled in Blender.
@@ -218,7 +240,204 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
              
                 </section>
         </section>
-        </section>
+-->     
+        
+       
+<script type="module">
+    import { getProjectById } from "./FetchAPIGet.js";
+    import { ProjectManager } from './Project.js';
+    import { Project } from './Project.js';
+    import { Task } from './Project.js';
+    import { Category } from './Project.js';
+    import {translateSite} from './Language.js';
+
+    let currentProject;
+
+    let projManager;
+    // Get the Comment form
+    var form = document.getElementById('commentForm');
+    // Get the container element to hold the projects
+    var projectContainer = document.getElementById("input");
+
+    function executeAfterFileLoaded() {
+      
+        translateSite();
+
+        // Retrieve stored comments from local storage and display them
+        var storedRatings = JSON.parse(localStorage.getItem('commentMessage')) || [];
+        var commentDiv = document.getElementById('comment');
+        storedRatings.forEach(function(commentData) {
+            var commentParagraph = document.createElement('p');
+            commentParagraph.textContent = 'Comment: ' + commentData.comment;
+            commentDiv.appendChild(commentParagraph);
+        });
+        
+        // Get the current URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        // Get the value of the 'id' parameter
+        var id = urlParams.get('id');
+        if(id === null){
+            id = 1;
+        }
+        // get current project
+        getProjectById(id).then(project => {
+            console.log(project);
+            currentProject = project;
+            updateProjectSection();
+
+        })
+        .catch(error => {
+            console.error(error);
+        });
+    }
+ 
+  
+    function updateProjectSection() {
+        // Clear existing project sections
+        projectContainer.innerHTML = '';
+
+        // Create the main project section
+        var projectSection = document.createElement('section');
+        //projectSection.classList.add('project');
+
+
+        // Create the project header section
+        var projectHeaderSection = document.createElement('section');
+        projectHeaderSection.classList.add('projectHeader');
+
+        // Create the picture element
+        var picture = document.createElement('picture');
+        var source = document.createElement('source');
+        source.media = '(min-width: 350px)';
+        source.srcset = currentProject.logopath;
+        var image = document.createElement('img');
+        image.alt = 'projectlogo';
+        image.src = currentProject.logopath;
+        picture.appendChild(source);
+        picture.appendChild(image);
+        projectHeaderSection.appendChild(picture);
+
+        // Create the project title
+        var projectTitle = document.createElement('h2');
+        projectTitle.classList.add('projectTitle');
+        projectTitle.textContent = currentProject.title;
+        projectHeaderSection.appendChild(projectTitle);
+
+        // Create the project assignee
+        var projectAssignee = document.createElement('h5');
+        projectAssignee.classList.add('projectAssignee');
+        projectAssignee.textContent = 'Project head: @Assignee';
+        projectHeaderSection.appendChild(projectAssignee);
+
+        projectSection.appendChild(projectHeaderSection);
+
+
+        // Create the project section content
+        var projectSectionContent = document.createElement('section');
+        projectSectionContent.classList.add('projectSection');
+
+        // split summary into summary and project description
+        const sentences = currentProject.summary.split('. ');
+
+        // Create the project summary section
+        var projectSummarySection = document.createElement('section');
+        projectSummarySection.id = '1';
+        var projectSummaryTitle = document.createElement('h3');
+        projectSummaryTitle.textContent = 'Project Summary';
+        var projectSummaryText = document.createTextNode(sentences[0]);
+        projectSummarySection.appendChild(projectSummaryTitle);
+        projectSummarySection.appendChild(projectSummaryText);
+        projectSectionContent.appendChild(projectSummarySection);
+
+        // Create the project description section
+        var projectDescriptionSection = document.createElement('section');
+        projectDescriptionSection.id = '2';
+        var projectDescriptionTitle = document.createElement('h3');
+
+
+        var projectDescriptionTitleSpan = document.createElement('span');
+        projectDescriptionTitleSpan.classList.add('projectSummary1');
+        projectDescriptionTitleSpan.textContent = 'Project Description';
+        projectDescriptionTitle.appendChild(projectDescriptionTitleSpan);
+        projectDescriptionSection.appendChild(projectDescriptionTitle);
+
+        for (let i = 1; i < sentences.length; i++) {
+            var projectDescriptionText = document.createElement('h5');
+            if(i === sentences.length-1){
+                projectDescriptionText.textContent = sentences[i];
+            }else{
+                projectDescriptionText.textContent = sentences[i] + ".";
+            }
+           
+            projectDescriptionSection.appendChild(projectDescriptionText);
+        }
+
+
+        projectSectionContent.appendChild(projectDescriptionSection);
+
+        // Create the project goals section
+        var projectGoalsSection = document.createElement('section');
+        projectGoalsSection.id = '3';
+        var projectGoalsTitle = document.createElement('h3');
+        projectGoalsTitle.textContent = 'Project Goals';
+        var projectGoalsList = document.createElement('ol');
+        for(let i = 0; i <currentProject.projecttask.length;i++){
+            var projectGoal = document.createElement('li');
+                projectGoal.textContent = currentProject.projecttask[i].summary;
+                projectGoalsList.appendChild(projectGoal);
+        }
+
+        projectGoalsSection.appendChild(projectGoalsTitle);
+        projectGoalsSection.appendChild(projectGoalsList);
+        projectSectionContent.appendChild(projectGoalsSection);
+
+        projectSection.appendChild(projectSectionContent);
+
+        // Append the project section to the container
+        projectContainer.appendChild(projectSection);
+    }
+
+
+    form.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the form from submitting
+
+        // Get the comment text
+        var commentM = document.getElementById('project1').value;
+
+        // Create an object to store the comment
+        var commentData = {
+            comment: commentM
+        };
+
+        // Retrieve existing comments from local storage
+        var storedComments = JSON.parse(localStorage.getItem('commentMessage')) || [];
+        // Add the new comment to the array
+        storedComments.push(commentData);
+        // Store the updated comments in local storage
+        localStorage.setItem('commentMessage', JSON.stringify(storedComments));
+
+        // Display comments on the site
+        var commentDiv = document.getElementById('comment');
+        commentDiv.innerHTML = ''; // Clear the existing comments
+
+        // Loop through the comments and create paragraphs for each
+        storedComments.forEach(function(comment) {
+            var commentParagraph = document.createElement('p');
+            commentParagraph.textContent = 'Comment: ' + comment.comment;
+            commentDiv.appendChild(commentParagraph);
+        });
+
+        // Clear the form input
+        document.getElementById('project1').value = '';
+
+    });
+    
+    // run method, when html file is completely loaded
+    document.addEventListener("DOMContentLoaded", executeAfterFileLoaded);
+</script>
+        
+        
+        
         <footer>
             
             <a href="\Kong/Imprint.html">Imprint</a>

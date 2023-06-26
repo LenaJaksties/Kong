@@ -13,15 +13,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <link rel="manifest" href="\manifest.json">
         <script src="Project.js" type="module" ></script>
         <!-- <script src="ExternScript.js" type="module"></script> -->
-        <script src="Language.js"></script>
+        <script src="Language.js" type="module"></script>
+        <script src="LoginLogoutForm.js" type="module"></script>
         <script src="FetchAPIGet.js" type="module"></script>
         <script src="FetchAPIPost.js" type="module"></script>
         <script src="FetchAPIPut.js" type="module"></script>
-        
-<!--        <script type="module">
-            import{getTaskById} from './FetchAPIGet.js';
-            window.getTaskById = getTaskByIs;
-        </script>-->
 
     </head>
     <body>
@@ -36,16 +32,24 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
             </picture>
 
             
-            <form id="login" action="/action_page.php">
-                username:
-                <input type="text" name="username" value="Mickey">
-                password:
-                <input type="text" name="password" value="Mickey">
-                <input type="submit" value="Submit">
-                <a href="\Kong/NewRegister.html">New Register</a>
-            </form>
+            <div id="loginForm">
+                <form id="login">
+                  <span id="username">Username:</span>
+                  <input type="text" name="username" value="Mickey">
+                  <span id="password">Password:</span>
+                  <input type="text" name="password" value="12345">
+                  <input id="submit" type="submit" value="Submit">
+                  <a href="\Kong/NewRegister.html">
+                    <span id="newRegister">New Register</span>
+                  </a>
+                </form>
+              </div>
+
+              <div id="logoutForm" style="display: none;">
+                <p>Welcome back, <span id="loggedInUsername"></span></p>
+                <button id="logout">Logout</button>
+              </div>
                 
-            
         </header>
         
                 <ul id = "navibar">
@@ -56,21 +60,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
                 </a>
             </li>
             <li class = "naviIcon">
-                <a href="\Kong/Projectview.html">
+                <a href="\Kong/Projectview.html"> 
                     <img src="projectlist.png" alt="Icon">
-                    Project list
+                    <span id = "projectList">
+                    Project list's
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/Projectdetail.html">
                     <img src="details.png" alt="Icon">
-                    Project Detail
+                    <span id = "projectDetail">
+                        Project Detail
+                    </span>
                 </a>
             </li>
             <li class = "naviIcon">
                 <a href="\Kong/NewProject.html">
                     <img src="newproject.png" alt="Icon">
+                    <span id = "newProject">
                     New Project
+                    </span>
                 </a>
                 
             </li>
@@ -92,7 +102,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         <section>
             <section id="left">
                
-            <h2>
+            <h2 id = "content">
                 Content
             </h2>
             <article>
@@ -108,14 +118,61 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Html.html to edit thi
         </section>
         
         <section id="right">
-            <h2>
+            <h2 id = "latestProjects">
                 Latest Projects
             </h2>
-            <a href="\Kong/Projectdetail.html">Website for Business matters</a>
+<!--            <a href="\Kong/Projectdetail.html">Website for Business matters</a>
             <a href="\Kong/Projectdetail.html">Game structure of Puzzle Game</a>
             <a href="\Kong/Projectdetail.html">3D Animation of Characters</a>
-            <a href="\Kong/Projectdetail.html">Storyline and Plot of the Point and Click Adventure</a>
-            
+            <a href="\Kong/Projectdetail.html">Storyline and Plot of the Point and Click Adventure</a>-->
+ 
+
+<script type="module">
+    import { getAllProject } from "./FetchAPIGet.js";
+    import { ProjectManager } from './Project.js';
+    import {translateSite} from './Language.js';
+
+    function executeAfterFileLoaded() {
+        
+        translateSite();
+    
+        // get all projects
+        getAllProject().then(projectList => {
+            console.log(projectList);
+
+            var projManager = new ProjectManager(projectList);
+            projManager.sortByStartDate();
+
+            var counter = 0;
+            // get 3 newest projects
+            for (let i = projectList.length -1; i >=0 ; i--) {
+
+                // Only display 3 projects
+                if (counter > 2) {
+                    break;
+                }
+
+                var projectLink = document.createElement("a");
+                // let link redirect to specific detail site
+                projectLink.href = "/Kong/Projectdetail.html?id=" + projectList[i].id;
+                projectLink.textContent = projectList[i].title;
+                
+                // embedd link in page
+                right.appendChild(projectLink);
+                right.appendChild(document.createElement("br"));
+    
+                counter ++;
+            }
+        })
+        .catch(error => {
+          console.error(error);
+        });
+      }
+  
+    // run method, when html file is completely loaded
+    document.addEventListener("DOMContentLoaded", executeAfterFileLoaded);
+</script>
+                
         </section>
         
         </section>

@@ -61,6 +61,12 @@ public class ProjectResource implements Serializable {
             // Useing adapter to create a persistable object
             Project proj= pa.toProject();
             this.em.persist(proj);          // em speichert in die Tabelle tbl_Project
+            
+//            // Execute SQL statement to modify summary length
+//            String sql = "ALTER TABLE tbl_Project ALTER COLUMN summary TYPE character varying(1200)";
+//            Query query = this.em.createNativeQuery(sql);
+//            query.executeUpdate();
+//           
             this.utx.commit();
             
             URI location = URI.create("/project?id=" + proj.getId());  // retrieve object

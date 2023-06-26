@@ -39,7 +39,7 @@ import jakarta.persistence.TypedQuery;
  * @author lenaj lisaj
  */
 @Path("assignee")
-
+        
 public class AssigneeResource implements Serializable {
     
     @PersistenceContext(unitName = "JPA_ExamplePU")

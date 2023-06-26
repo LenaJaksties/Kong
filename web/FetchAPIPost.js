@@ -167,7 +167,6 @@ function postProjectAssignee(projectId, assigneeId){
     
 }
 
-// TODO ÄNDER REST API
 function postProjectCategory(projectId, categoryId){
     
     const path = "http://localhost:8080/Kong/webresources/project_task";

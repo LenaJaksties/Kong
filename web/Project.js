@@ -11,90 +11,14 @@ export class Project{
         this.projecttask = projecttask;
     }
     
-//    get id(){
-//        return this._id;
-//    }
-//    
-//    set id(id){
-//        this._id = id;
-//    }
-//    
-//    get title(){
-//        console.log('get title');
-//        return this._title;
-//    }
-//    
-//    set title(title){
-//        this._title = title;
-//    }
-//    
-//    get summary(){
-//        return this._summary;
-//    }
-//    
-//    set summary(summary){
-//        this._summary = summary;
-//    }
-//    
-//    get logopath(){
-//        return this._logopath;
-//    }
-//    
-//    set logopath(logopath){
-//        this._logopath = logopath;
-//    }
-//
-//    get startdate(){
-//        return this._startdate;
-//    }
-//    
-//    set startdate(startdate){
-//        this._startdate = startdate;
-//    }
-//
-//    get deadline(){
-//        return this._deadline;
-//    }
-//    
-//    set deadline(deadline){
-//        this._deadline = deadline;
-//    }
-//
-//    get status(){
-//        return this._status;
-//    }
-//    
-//    set status(status){
-//        this._status = status;
-//    }
-    
-//    get projectassignee(){
-//        return this._projectassignee;
-//    }
-//    
-//    set projectassignee(projectassignee){
-//        projectassignee.forEach(function (a){
-//            this._projectassignee.add(a);
-//        });
-//        
-//    }
-//    
-//    get projecttask(){
-//        return this._projecttask;
-//    }
-//    
-//    set projecttask(projecttask){
-//        projecttask.forEach(function (t){
-//            this._projecttask.add(t);
-//        });
-//        
-//    }
-    
     calcWorkingtime(){
         let totalworkingtime = 0;
-        this.projecttask.forEach(function(value){
-            totalworkingtime += value.scheduledworkingtime;
+        if(this.projecttask !== null){
+            this.projecttask.forEach(function(value){
+            totalworkingtime += value.scheduledWorkingTime;
         });
+        }
+       
         console.log("Total time:"+totalworkingtime);
         return totalworkingtime;
     }
@@ -267,18 +191,60 @@ export class ProjectManager {
     this.projects = projects;
   }
   
-  sortByStartDate() {
-    const n = this.projects.length;
-    for (let i = 0; i < n - 1; i++) {
-      for (let j = 0; j < n - i - 1; j++) {
-        if (this.projects[j].startdate > this.projects[j + 1].startdate) {
-          const temp = this.projects[j];
-          this.projects[j] = this.projects[j + 1];
-          this.projects[j + 1] = temp;
-        }
-      }
-    }
+ sortByStartDate() {
+  this.projects.sort((a, b) => {
+    return this.compareStartDates(a.startDate, b.startDate);
+  });
+}
+
+compareStartDates(dateA, dateB) {
+  const partsA = dateA.split(/[- :]/);
+  const partsB = dateB.split(/[- :]/);
+
+  const yearA = parseInt(partsA[0]);
+  const monthA = parseInt(partsA[1]);
+  const dayA = parseInt(partsA[2]);
+  const hourA = parseInt(partsA[3]);
+  const minuteA = parseInt(partsA[4]);
+  const secondA = parseInt(partsA[5]);
+
+  const yearB = parseInt(partsB[0]);
+  const monthB = parseInt(partsB[1]);
+  const dayB = parseInt(partsB[2]);
+  const hourB = parseInt(partsB[3]);
+  const minuteB = parseInt(partsB[4]);
+  const secondB = parseInt(partsB[5]);
+
+  if (yearA !== yearB) {
+    return yearA - yearB;
   }
+  if (monthA !== monthB) {
+    return monthA - monthB;
+  }
+  if (dayA !== dayB) {
+    return dayA - dayB;
+  }
+  if (hourA !== hourB) {
+    return hourA - hourB;
+  }
+  if (minuteA !== minuteB) {
+    return minuteA - minuteB;
+  }
+  return secondA - secondB;
+}
+  
+//  sortByStartDate() {
+//    const n = this.projects.length;
+//    for (let i = 0; i < n - 1; i++) {
+//      for (let j = 0; j < n - i - 1; j++) {
+//        if (this.projects[j].startdate > this.projects[j + 1].startdate) {
+//          const temp = this.projects[j];
+//          this.projects[j] = this.projects[j + 1];
+//          this.projects[j + 1] = temp;
+//        }
+//      }
+//    }
+//  }
 
   sortByDuration() {
     const n = this.projects.length;

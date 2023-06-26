@@ -84,7 +84,7 @@ function getAllTask() {
     console.log("Get All existing Tasks");
     const path = "http://localhost:8080/Kong/webresources/task/All";
     
-    fetch(path, {
+    return fetch(path, {
         method: "GET",
         headers:{
             "Accept": "application/json"
@@ -110,6 +110,7 @@ function getAllTask() {
         });
 
         console.log(tasks);
+        return tasks;
 
     });
 }
@@ -313,104 +314,179 @@ function getAllAssignee() {
  * Get Methods for Project
  */
 
-function getProjectById(id) {
-    console.log("Get Project by id");
-    const path = "http://localhost:8080/Kong/webresources/project?id=" + id;
+export function getProjectById(id) {
+  console.log("Get Project by id");
+  const path = `http://localhost:8080/Kong/webresources/project?id=${id}`;
+  const taskPath = "http://localhost:8080/Kong/webresources/task/All";
 
-    fetch(path, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(response => {
-        const projectData = response; // Assuming the response is a single project object
+  return Promise.all([
+    fetch(path).then(response => response.json()),
+    fetch(taskPath).then(response => response.json())
+  ])
+  .then(([projectsData, tasksData]) => {
+    const tasksMap = new Map(tasksData.map(task => [task.id, task]));
+    const projectData = projectsData;
 
-        // Create a new Project instance
-        const project = new Project(
-            projectData.id,
-            projectData.title,
-            projectData.summary,
-            projectData.logopath,
-            projectData.startDate,
-            projectData.deadline,
-            projectData.status,
-            projectData.projectassignee,
-            projectData.projecttask
+    const projectTasks = projectData.tasks.map(task => {
+      const taskData = tasksMap.get(task.id);
+      if (taskData) {
+        var cat = new Category(null, null, null);
+        return new Task(
+          cat,
+          taskData.id,
+          taskData.title,
+          taskData.summary,
+          taskData.scheduledWorkingTime,
+          taskData.deadline,
+          taskData.achieved
         );
-
-        console.log(project);
-
+      } else {
+        console.error(`Task with ID ${task.id} not found.`);
+        return null;
+      }
     });
+
+    const project = new Project(
+      projectData.id,
+      projectData.title,
+      projectData.summary,
+      projectData.logopath,
+      projectData.startDate,
+      projectData.deadline,
+      projectData.status,
+      projectData.projectassignee,
+      projectTasks.filter(task => task !== null)
+    );
+
+    console.log(project);
+    return project;
+  });
 }
 
+//    fetch(path, {
+//        method: "GET",
+//        headers: {
+//            "Accept": "application/json"
+//        }
+//    })
+//    .then(response => response.json())
+//    .then(response => {
+//        const projectData = response; // Assuming the response is a single project object
+//
+//        // Create a new Project instance
+//        const project = new Project(
+//            projectData.id,
+//            projectData.title,
+//            projectData.summary,
+//            projectData.logopath,
+//            projectData.startDate,
+//            projectData.deadline,
+//            projectData.status,
+//            projectData.projectassignee,
+//            projectData.projecttask
+//        );
+//
+//        console.log(project);
+//
+//    });
+//}
 
-function getProjectByTitle(title) {
-    console.log("Get Project by lastname");
-    const path = "http://localhost:8080/Kong/webresources/project/title?title=" + title;
-    
-    fetch(path, {
-        method: "GET",
-        headers:{
-            "Accept": "application/json"
-        }
-    })
-            .then(response => response.json())
-            .then(response => {
-            const projectsData = response; // Assuming the response is an array of project objects
-        // Convert the response data into JavaScript Project instances
-        const projects = projectsData.map(projectData => {
-            return new Project(
-                projectData.id,
-                projectData.title,
-                projectData.summary,
-                projectData.logopath,
-                projectData.startDate,
-                projectData.deadline,
-                projectData.status,
-                projectData.projectassignee,
-                projectData.projecttask
+
+export function getAllProject() {
+  console.log("Get All existing Projects");
+  const projectPath = "http://localhost:8080/Kong/webresources/project/All";
+  const taskPath = "http://localhost:8080/Kong/webresources/task/All"; // Assuming this endpoint fetches all tasks
+
+  return Promise.all([
+    fetch(projectPath).then(response => response.json()),
+    fetch(taskPath).then(response => response.json())
+  ])
+    .then(([projectsData, tasksData]) => {
+      // Assuming projectsData and tasksData are arrays of project and task objects respectively
+
+      // Convert the tasksData into a Map for efficient lookup by ID
+      const tasksMap = new Map(tasksData.map(task => [task.id, task]));
+
+      // Convert the projectsData into JavaScript Project instances
+      const projects = projectsData.map(projectData => {
+        const projectTasks = projectData.tasks.map(task => {
+          const taskData = tasksMap.get(task.id);
+          if (taskData) {
+              var cat = new Category(null,null,null);
+            return new Task(cat,
+              taskData.id,
+              taskData.title,
+              taskData.summary,
+              taskData.scheduledWorkingTime,
+              taskData.deadline,
+              taskData.achieved
             );
+          } else {
+            console.error(`Task with ID ${task.id} not found.`);
+            return null;
+          }
         });
-        
-        console.log(projects);
 
+        return new Project(
+          projectData.id,
+          projectData.title,
+          projectData.summary,
+          projectData.logopath,
+          projectData.startDate,
+          projectData.deadline,
+          projectData.status,
+          projectData.projectassignee,
+          projectTasks.filter(task => task !== null) // Filter out null tasks
+        );
+      });
+
+      console.log(projects);
+      return projects;
     });
 }
 
-function getAllProject() {
-    console.log("Get All existing Projects");
-    const path = "http://localhost:8080/Kong/webresources/project/All";
-    
-    fetch(path, {
-        method: "GET",
-        headers: {
-            "Accept": "application/json"
-        }
-    })
-    .then(response => response.json())
-    .then(response => {
-        const projectsData = response; // Assuming the response is an array of project objects
-        // Convert the response data into JavaScript Project instances
-        const projects = projectsData.map(projectData => {
-            return new Project(
-                projectData.id,
-                projectData.title,
-                projectData.summary,
-                projectData.logopath,
-                projectData.startDate,
-                projectData.deadline,
-                projectData.status,
-                projectData.projectassignee,
-                projectData.projecttask
-            );
-        });
-        
-        console.log(projects);
-        
-    });
-}
+
+//export function getAllProject() {
+//    console.log("Get All existing Projects");
+//    const path = "http://localhost:8080/Kong/webresources/project/All";
+//    
+//    
+//    // TODO add tasks to projects for better work afterwards!
+//    var tasklist  = getAllTask();
+//    //var allTasks = getAllTask();
+////    for(var i = 0; i < allTasks.arguments; i++){
+////        tasklist.fill(allTasks[i].all(Task));
+////    }
+//
+//    return fetch(path, {
+//        method: "GET",
+//        headers: {
+//            "Accept": "application/json"
+//        }
+//    })
+//    .then(response => response.json())
+//    .then(response => {
+//        const projectsData = response; // Assuming the response is an array of project objects
+//
+//        // Convert the response data into JavaScript Project instances
+//        const projects = projectsData.map(projectData => {
+//            return new Project(
+//                projectData.id,
+//                projectData.title,
+//                projectData.summary,
+//                projectData.logopath,
+//                projectData.startDate,
+//                projectData.deadline,
+//                projectData.status,
+//                projectData.projectassignee,
+//                projectData.projecttask = tasklist
+//            );
+//        });
+//
+//        console.log(projects);
+//        return projects;
+//    });
+//}
 
 
 //getTaskById(1);

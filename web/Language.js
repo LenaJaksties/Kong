@@ -16,16 +16,16 @@ dictionary.set("username",["Username","Benutzername"]);
 dictionary.set("password",["Password","Passwort"]);
 dictionary.set("submit",["Submit","Senden"]);
 dictionary.set("newRegister",["New Register","Neuregistrierung"]);
-dictionary.set("project",["Project","Projekt"]);
-dictionary.set("projectSummary",["Project Summary","Projektübersicht"]);
+dictionary.set("project1",["Project","Projekt"]);
+dictionary.set("projectSummary1",["Project Summary","Projektübersicht"]);
 dictionary.set("projectGoals",["Project Goals","Projektziele"]);
 dictionary.set("send",["Send","Senden"]);
 dictionary.set("reset",["Reset","Zurücksetzen"]);
 dictionary.set("menu",["Menu","Menü"]);
 dictionary.set("projectOverview",["Project Overview","Projektübersicht"]);
 dictionary.set("goToProjectDetails",["Go to project details","Gehe zu Projekt Details"]);
-dictionary.set("projectTitle",["Project Title","Projekttitel"]);
-dictionary.set("projectHead",["Project Head","Projektleiter"]);
+dictionary.set("projectTitle1",["Project Title","Projekttitel"]);
+dictionary.set("projectHead1",["Project Head","Projektleiter"]);
 dictionary.set("startDate",["Start Date","Startdatum"]);
 dictionary.set("deadline",["Deadline","Frist"]);
 
@@ -45,3 +45,30 @@ dictionary.forEach((values, key) => {
   console.log(`${key}: ${values[indexNumber]}`);
 });
 console.log("");
+
+export function translateSite(){
+ console.log("Window loaded");
+   dictionary.forEach((values, key) => {
+       
+    const curElement = document.getElementById(key);
+
+    if (curElement) {
+      curElement.innerHTML = values[indexNumber];
+      curElement.value = values[indexNumber];
+    } else {
+      const elements = document.getElementsByClassName(key);
+      if (elements.length > 0) {
+        for (let i = 0; i < elements.length; i++) {
+          elements[i].innerHTML = values[indexNumber];
+          elements[i].value = values[indexNumber];
+        }
+      }
+    }
+  });
+       console.log("Site is being translated");
+   
+   
+};
+
+
+

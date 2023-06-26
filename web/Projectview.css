@@ -78,6 +78,23 @@
    
 }
 
+button{
+    
+    border: 2px solid rgba(0,0,0,0.06);
+    padding: 2px;
+    
+    color:#B2CCEE;
+    background-color: white;
+    box-sizing: border-box;
+    box-shadow: rgba(0,0,0,0.02) 0 1px 3px 0;
+    align-items:center;
+    font-size: 40px;
+    margin:50px;
+   
+
+}
+
+
 /* show filterOption */
 #filterLink:hover + #filterOption, #filterOption:hover{
     display:block;

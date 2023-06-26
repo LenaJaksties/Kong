@@ -44,7 +44,7 @@ public class Project implements Serializable {
     private Long id;
     @Column(name = "title")
     private String title;
-    @Column(name = "summary")
+    @Column(name = "summary", length = 1100)
     private String summary;
     @Column(name = "logopath")
     private String logopath;
